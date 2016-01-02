@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer", "Thermometer\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer.Models", "Thermometer.Models\Thermometer.Models.csproj", "{877AF68E-2550-47D4-93CA-66E8A0ECF13B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer.ViewModels", "Thermometer.ViewModels\Thermometer.ViewModels.csproj", "{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,22 @@ Global
 		{877AF68E-2550-47D4-93CA-66E8A0ECF13B}.Release|x64.Build.0 = Release|Any CPU
 		{877AF68E-2550-47D4-93CA-66E8A0ECF13B}.Release|x86.ActiveCfg = Release|Any CPU
 		{877AF68E-2550-47D4-93CA-66E8A0ECF13B}.Release|x86.Build.0 = Release|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Debug|ARM.Build.0 = Debug|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Debug|x64.Build.0 = Debug|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Debug|x86.Build.0 = Debug|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Release|ARM.Build.0 = Release|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Release|x64.ActiveCfg = Release|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Release|x64.Build.0 = Release|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Release|x86.ActiveCfg = Release|Any CPU
+		{B89ABF65-1AEA-479E-9DD9-589659E0D3CC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
