@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using MugenMvvmToolkit.ViewModels;
 
 namespace Thermometer.ViewModels.ViewModels
@@ -6,9 +8,23 @@ namespace Thermometer.ViewModels.ViewModels
     {
         #region Fields
 
-        private string _text = "Hello MugenMvvmToolkit";
+        private string _text = "Hello MugenMvvmToolkit 1";
 
         #endregion
+
+        #region Constructors
+
+        public MainVm()
+        {
+            Items = new List<string>();
+            for (var i = 0; i < 100; i++)
+            {
+                Items.Add($"item{i}");
+            }
+        }
+
+        #endregion
+
 
         #region Properties
 
@@ -23,6 +39,8 @@ namespace Thermometer.ViewModels.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public IList<string> Items { get; }
 
         #endregion
     }
