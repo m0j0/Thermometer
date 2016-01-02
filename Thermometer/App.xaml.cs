@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MugenMvvmToolkit;
+using MugenMvvmToolkit.WinRT.Infrastructure;
 
 namespace Thermometer
 {
@@ -37,7 +39,7 @@ namespace Thermometer
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 /*#if DEBUG
@@ -48,6 +50,7 @@ namespace Thermometer
 #endif*/
 
             Frame rootFrame = Window.Current.Content as Frame;
+            WinRTBootstrapperBase bootstrapper = null;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -55,6 +58,8 @@ namespace Thermometer
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
+                bootstrapper = new Bootstrapper<ViewModels.App>(rootFrame, new AutofacContainer());
+                await bootstrapper.InitializeAsync();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
@@ -72,7 +77,8 @@ namespace Thermometer
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                //rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                bootstrapper?.Start();
             }
             // Ensure the current window is active
             Window.Current.Activate();
