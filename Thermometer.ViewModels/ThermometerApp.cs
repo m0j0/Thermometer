@@ -1,10 +1,10 @@
 using System;
 using MugenMvvmToolkit;
-using Thermometer.ViewModels.ViewModels;
+using Thermometer.ViewModels;
 
-namespace Thermometer.ViewModels
+namespace Thermometer
 {
-    public class App : MvvmApplication
+    public class ThermometerApp : MvvmApplication
     {
         #region Methods
 

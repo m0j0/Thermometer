@@ -5,7 +5,7 @@
     xmlns:local="using:Thermometer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="using:Thermometer.ViewModels.ViewModels"
+    xmlns:viewModels="using:Thermometer.ViewModels"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance viewModels:MainVm}">
 

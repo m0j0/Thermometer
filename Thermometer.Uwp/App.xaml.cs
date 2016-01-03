@@ -58,7 +58,7 @@ namespace Thermometer
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-                bootstrapper = new Bootstrapper<ViewModels.App>(rootFrame, new AutofacContainer());
+                bootstrapper = new Bootstrapper<ThermometerApp>(rootFrame, new AutofacContainer());
                 await bootstrapper.InitializeAsync();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;

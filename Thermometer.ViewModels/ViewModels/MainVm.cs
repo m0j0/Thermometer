@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using MugenMvvmToolkit.ViewModels;
 
-namespace Thermometer.ViewModels.ViewModels
+namespace Thermometer.ViewModels
 {
     public class MainVm : CloseableViewModel
     {
