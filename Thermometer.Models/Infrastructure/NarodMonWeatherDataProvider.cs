@@ -17,7 +17,7 @@ namespace Thermometer.Infrastructure
 
         private async Task<string> Send()
         {
-            //    var t = new HttpWebRequest();
+            //await Task.Delay(3000);
 
             using (var httpClient = new HttpClient())
             {
@@ -26,8 +26,7 @@ namespace Thermometer.Infrastructure
                     cmd = "sensorsNearby",
                     lat = 56.2F,
                     lng = 92.58F,
-                    radius = 10,
-                    types = new[] {1, 2, 3, 4, 5, 6},
+                    radius = 30,
                     uuid = Uuid,
                     api_key = ApiKey,
                     lang = "ru"
@@ -38,7 +37,7 @@ namespace Thermometer.Infrastructure
 
                 var t = new StringContent(json, Encoding.UTF8, "application/json");
                 // Do the actual request and await the response
-                var httpResponse = await httpClient.PostAsync("http://localhost/api/path", t);
+                var httpResponse = await httpClient.PostAsync(ApiStr, t);
 
                 // If the response contains content we want to read it!
                 if (httpResponse.Content != null)
@@ -48,7 +47,7 @@ namespace Thermometer.Infrastructure
                     // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
                 }
 
-                return null;
+                return "ниче не вернулось";
             }
         }
 

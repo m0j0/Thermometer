@@ -6,17 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:Thermometer.ViewModels"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Thermometer.Behaviors"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{d:DesignInstance viewModels:MainVm}">
-
+    
+    <interactivity:Interaction.Behaviors>
+        <behaviors:ProgressBehavior IsVisible="{Binding Path=IsBusy}"
+                                    Text="{Binding Path=BusyMessage}" />
+    </interactivity:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MaxHeight="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Text}" />
+        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
         <ListView Grid.Row="1" ItemsSource="{Binding Items}">
             <ListView.ItemTemplate>
                 <DataTemplate>

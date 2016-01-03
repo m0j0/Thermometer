@@ -1,6 +1,6 @@
 ﻿namespace Thermometer.JsonModels
 {
-    public class SensorsNearbyRequest
+    internal class SensorsNearbyRequest
     {
         public string cmd { get; set; }
         public float lat { get; set; }

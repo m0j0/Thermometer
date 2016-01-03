@@ -9,7 +9,6 @@ namespace Thermometer.ViewModels
         #region Fields
 
         private readonly ICurrentWeatherDataProvider _currentWeatherDataProvider;
-        private string _text = "Hello MugenMvvmToolkit 1";
 
         #endregion
 
@@ -23,7 +22,7 @@ namespace Thermometer.ViewModels
             {
                 Items.Add($"item{i}");
             }
-            _currentWeatherDataProvider.GetInfoAsync().ContinueWith(task => Text = task.Result);
+            _currentWeatherDataProvider.GetInfoAsync().ContinueWith(task => Text = task.Result).WithBusyIndicator(this);
         }
 
         #endregion
@@ -31,17 +30,7 @@ namespace Thermometer.ViewModels
 
         #region Properties
 
-        public string Text
-        {
-            get { return _text; }
-            set
-            {
-                if (Equals(_text, value))
-                    return;
-                _text = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Text { get; set; } = "Hello MugenMvvmToolkit 1";
 
         public IList<string> Items { get; }
 
