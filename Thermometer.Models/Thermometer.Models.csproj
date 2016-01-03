@@ -34,7 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Infrastructure\NarodMonWeatherDataProvider.cs" />
+    <Compile Include="Interfaces\ICurrentWeatherDataProvider.cs" />
+    <Compile Include="Modules\ModelModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

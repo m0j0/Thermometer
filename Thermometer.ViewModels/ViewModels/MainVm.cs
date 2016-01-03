@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MugenMvvmToolkit.ViewModels;
+using Thermometer.Interfaces;
 
 namespace Thermometer.ViewModels
 {
@@ -7,14 +8,16 @@ namespace Thermometer.ViewModels
     {
         #region Fields
 
+        private readonly ICurrentWeatherDataProvider _currentWeatherDataProvider;
         private string _text = "Hello MugenMvvmToolkit 1";
 
         #endregion
 
         #region Constructors
 
-        public MainVm()
+        public MainVm(ICurrentWeatherDataProvider currentWeatherDataProvider)
         {
+            _currentWeatherDataProvider = currentWeatherDataProvider;
             Items = new List<string>();
             for (var i = 0; i < 100; i++)
             {
