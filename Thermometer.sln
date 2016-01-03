@@ -9,19 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer.ViewModels", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer.Uwp", "Thermometer.Uwp\Thermometer.Uwp.csproj", "{9BF99E2A-5C9E-4F52-9572-436C4D194558}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Thermometer", "Thermometer", "{0B016BFD-EB35-4EFA-940E-4030DD6906A6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UniversalApp", "UniversalApp", "{B5CAB459-4125-468A-A0B0-E501C8BAC1E8}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Thermometer.Shared", "Thermometer\Thermometer.Shared\Thermometer.Shared.shproj", "{3E2B33EF-357D-4441-B87B-550A862A42C6}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Thermometer.Shared", "UniversalApp\Thermometer.Shared\Thermometer.Shared.shproj", "{3E2B33EF-357D-4441-B87B-550A862A42C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer.Windows", "Thermometer\Thermometer.Windows\Thermometer.Windows.csproj", "{354A88BA-BD16-4D11-A169-AA9CCA237BB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer.Windows", "UniversalApp\Thermometer.Windows\Thermometer.Windows.csproj", "{354A88BA-BD16-4D11-A169-AA9CCA237BB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer.WindowsPhone", "Thermometer\Thermometer.WindowsPhone\Thermometer.WindowsPhone.csproj", "{6E66C542-BEE1-4950-A026-8D7E0DC1DD9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thermometer.WindowsPhone", "UniversalApp\Thermometer.WindowsPhone\Thermometer.WindowsPhone.csproj", "{6E66C542-BEE1-4950-A026-8D7E0DC1DD9D}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Thermometer\Thermometer.Shared\Thermometer.Shared.projitems*{354a88ba-bd16-4d11-a169-aa9cca237bb1}*SharedItemsImports = 4
-		Thermometer\Thermometer.Shared\Thermometer.Shared.projitems*{6e66c542-bee1-4950-a026-8d7e0dc1dd9d}*SharedItemsImports = 4
-		Thermometer\Thermometer.Shared\Thermometer.Shared.projitems*{3e2b33ef-357d-4441-b87b-550a862a42c6}*SharedItemsImports = 13
+		UniversalApp\Thermometer.Shared\Thermometer.Shared.projitems*{354a88ba-bd16-4d11-a169-aa9cca237bb1}*SharedItemsImports = 4
+		UniversalApp\Thermometer.Shared\Thermometer.Shared.projitems*{6e66c542-bee1-4950-a026-8d7e0dc1dd9d}*SharedItemsImports = 4
+		UniversalApp\Thermometer.Shared\Thermometer.Shared.projitems*{3e2b33ef-357d-4441-b87b-550a862a42c6}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,8 +139,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3E2B33EF-357D-4441-B87B-550A862A42C6} = {0B016BFD-EB35-4EFA-940E-4030DD6906A6}
-		{354A88BA-BD16-4D11-A169-AA9CCA237BB1} = {0B016BFD-EB35-4EFA-940E-4030DD6906A6}
-		{6E66C542-BEE1-4950-A026-8D7E0DC1DD9D} = {0B016BFD-EB35-4EFA-940E-4030DD6906A6}
+		{3E2B33EF-357D-4441-B87B-550A862A42C6} = {B5CAB459-4125-468A-A0B0-E501C8BAC1E8}
+		{354A88BA-BD16-4D11-A169-AA9CCA237BB1} = {B5CAB459-4125-468A-A0B0-E501C8BAC1E8}
+		{6E66C542-BEE1-4950-A026-8D7E0DC1DD9D} = {B5CAB459-4125-468A-A0B0-E501C8BAC1E8}
 	EndGlobalSection
 EndGlobal
