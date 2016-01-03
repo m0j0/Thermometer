@@ -8,5 +8,6 @@ namespace Thermometer.Interfaces
 {
     public interface ICurrentWeatherDataProvider
     {
+        Task<string> GetInfoAsync();
     }
 }

@@ -23,6 +23,7 @@ namespace Thermometer.ViewModels
             {
                 Items.Add($"item{i}");
             }
+            _currentWeatherDataProvider.GetInfoAsync().ContinueWith(task => Text = task.Result);
         }
 
         #endregion
