@@ -15,45 +15,40 @@ namespace Thermometer.Infrastructure
         const string ApiStr = @"http://narodmon.ru/api";
 
 
-        private async Task<string> Send()
+        private async Task<TResponse> Send<TResponse>(object request)
         {
-            //await Task.Delay(3000);
-
+            var json = JsonConvert.SerializeObject(request);
             using (var httpClient = new HttpClient())
+            using (var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
+            using (var httpResponse = await httpClient.PostAsync(ApiStr, stringContent))
             {
-                var sensors = new SensorsNearbyRequest()
-                {
-                    cmd = "sensorsNearby",
-                    lat = 56.2F,
-                    lng = 92.58F,
-                    radius = 30,
-                    uuid = Uuid,
-                    api_key = ApiKey,
-                    lang = "ru"
-                };
+                var response = await httpResponse.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TResponse>(response);
 
-                var json = JsonConvert.SerializeObject(sensors);
+                //if (httpResponse.Content != null)
+                //{
+                //    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
+                //}
 
-
-                var t = new StringContent(json, Encoding.UTF8, "application/json");
-                // Do the actual request and await the response
-                var httpResponse = await httpClient.PostAsync(ApiStr, t);
-
-                // If the response contains content we want to read it!
-                if (httpResponse.Content != null)
-                {
-                    return await httpResponse.Content.ReadAsStringAsync();
-
-                    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
-                }
-
-                return "ниче не вернулось";
+                //return "ниче не вернулось";
             }
         }
 
-        public Task<string> GetInfoAsync()
+        public async Task<string> GetInfoAsync()
         {
-            return Send();
+            var sensors = new SensorsNearbyRequest()
+            {
+                cmd = "sensorsNearby",
+                lat = 56.2F,
+                lng = 92.58F,
+                radius = 30,
+                uuid = Uuid,
+                api_key = ApiKey,
+                lang = "ru"
+            };
+            var result = await Send<SensorsNearbyResponse>(sensors);
+
+            return result.devices.Length.ToString();
         }
     }
 }
