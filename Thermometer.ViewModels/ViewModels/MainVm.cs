@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
+using Thermometer.Projections;
 
 namespace Thermometer.ViewModels
 {
@@ -17,22 +18,17 @@ namespace Thermometer.ViewModels
         public MainVm(ICurrentWeatherDataProvider currentWeatherDataProvider)
         {
             _currentWeatherDataProvider = currentWeatherDataProvider;
-            Items = new List<string>();
-            for (var i = 0; i < 100; i++)
-            {
-                Items.Add($"item{i}");
-            }
-            _currentWeatherDataProvider.GetInfoAsync().ContinueWith(task => Text = task.Result).WithBusyIndicator(this);
+
+            _currentWeatherDataProvider.GetDevicesAsync().ContinueWith(task => Items = task.Result).WithBusyIndicator(this);
         }
 
         #endregion
-
 
         #region Properties
 
         public string Text { get; set; } = "Hello MugenMvvmToolkit 1";
 
-        public IList<string> Items { get; }
+        public IList<DeviceProjection> Items { get; private set; }
 
         #endregion
     }

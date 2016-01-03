@@ -26,10 +26,23 @@
         <ListView Grid.Row="1" ItemsSource="{Binding Items}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Текст: " Margin="0 0 2 0" />
-                        <TextBlock Text="{Binding}" />
-                    </StackPanel>
+                    <Border BorderThickness="1" BorderBrush="Aqua">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" />
+
+                            <ListView ItemsSource="{Binding Sensors}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" />
+                                            <TextBlock Text="{Binding Value}" />
+                                            <TextBlock Text="{Binding Unit}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

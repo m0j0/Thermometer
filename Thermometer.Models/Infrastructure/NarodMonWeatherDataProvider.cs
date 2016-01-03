@@ -1,10 +1,13 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Thermometer.Interfaces;
 using Thermometer.JsonModels;
+using Thermometer.Projections;
 
 namespace Thermometer.Infrastructure
 {
@@ -34,9 +37,9 @@ namespace Thermometer.Infrastructure
             }
         }
 
-        public async Task<string> GetInfoAsync()
+        public async Task<IList<DeviceProjection>> GetDevicesAsync()
         {
-            var sensors = new SensorsNearbyRequest()
+            var sensors = new SensorsNearbyRequest
             {
                 cmd = "sensorsNearby",
                 lat = 56.2F,
@@ -46,9 +49,35 @@ namespace Thermometer.Infrastructure
                 api_key = ApiKey,
                 lang = "ru"
             };
-            var result = await Send<SensorsNearbyResponse>(sensors);
+            var response = await Send<SensorsNearbyResponse>(sensors);
 
-            return result.devices.Length.ToString();
+            var result = new List<DeviceProjection>();
+            foreach (var device in response.devices)
+            {
+                var projection = new DeviceProjection
+                {
+                    Id = device.id,
+                    Name = device.name,
+                    Location = device.name,
+                    Distance = device.distance,
+                    Latitude = device.lat,
+                    Longitude = device.lng,
+                    Sensors =
+                        device.sensors.Select(
+                            sensor =>
+                                new SensorProjection
+                                {
+                                    Id = sensor.id,
+                                    Type = sensor.type,
+                                    Name = sensor.name,
+                                    Value = sensor.value,
+                                    Unit = sensor.unit,
+                                    Time = ModelExtensions.UnixTimeStampToDateTime(sensor.time)
+                                }).ToList()
+                };
+                result.Add(projection);
+            }
+            return result;
         }
     }
 }
