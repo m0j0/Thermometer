@@ -11,40 +11,25 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{d:DesignInstance viewModels:MainVm}">
-    
+
     <interactivity:Interaction.Behaviors>
         <behaviors:ProgressBehavior IsVisible="{Binding Path=IsBusy}"
                                     Text="{Binding Path=BusyMessage}" />
     </interactivity:Interaction.Behaviors>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MaxHeight="300" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
-        <ListView Grid.Row="1" ItemsSource="{Binding Items}">
-            <ListView.ItemTemplate>
+        <Pivot ItemsSource="{Binding ItemsSource}"
+               SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            <Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="Aqua">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" />
-
-                            <ListView ItemsSource="{Binding Sensors}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Name}" />
-                                            <TextBlock Text="{Binding Value}" />
-                                            <TextBlock Text="{Binding Unit}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackPanel>
-                    </Border>
+                    <TextBlock Text="{Binding DisplayName}" />
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </Pivot.HeaderTemplate>
+            <Pivot.ItemTemplate>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding Converter={StaticResource ViewModelToViewConverter}}" />
+                </DataTemplate>
+            </Pivot.ItemTemplate>
+
+        </Pivot>
     </Grid>
 </Page>

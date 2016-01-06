@@ -5,30 +5,34 @@ using Thermometer.Projections;
 
 namespace Thermometer.ViewModels
 {
-    public class MainVm : CloseableViewModel
+    public class MainVm : MultiViewModel
     {
         #region Fields
-
-        private readonly ICurrentWeatherDataProvider _currentWeatherDataProvider;
 
         #endregion
 
         #region Constructors
 
-        public MainVm(ICurrentWeatherDataProvider currentWeatherDataProvider)
+        public MainVm()
         {
-            _currentWeatherDataProvider = currentWeatherDataProvider;
-
-            _currentWeatherDataProvider.GetDevicesAsync().ContinueWith(task => Items = task.Result).WithBusyIndicator(this);
         }
 
         #endregion
 
         #region Properties
 
-        public string Text { get; set; } = "Hello MugenMvvmToolkit 1";
+        #endregion
 
-        public IList<DeviceProjection> Items { get; private set; }
+        #region Methods
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            //AddViewModel(GetViewModel<CurrentWeatherVm>());
+            AddViewModel(GetViewModel<WeatherForecastVm>());
+            AddViewModel(GetViewModel<WeatherForecastVm>());
+        }
 
         #endregion
     }

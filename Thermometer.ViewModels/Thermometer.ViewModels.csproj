@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="ThermometerApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CurrentWeatherVm.cs" />
     <Compile Include="ViewModels\MainVm.cs" />
+    <Compile Include="ViewModels\WeatherForecastVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MugenMvvmToolkit, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
