@@ -2,8 +2,28 @@
 {
     public class LocationProjection
     {
-        public double Latitude { get; set; }
+        #region Constructors
 
-        public double Longitude { get; set; }
+        public LocationProjection(double longitude, double latitude)
+        {
+            Longitude = longitude;
+            Latitude = latitude;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        ///     Долгота
+        /// </summary>
+        public double Longitude { get; }
+
+        /// <summary>
+        ///     Широта
+        /// </summary>
+        public double Latitude { get; }
+
+        #endregion
     }
 }

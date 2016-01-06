@@ -1,9 +1,13 @@
-﻿namespace Thermometer.Interfaces
+﻿using Thermometer.Projections;
+
+namespace Thermometer.Interfaces
 {
     public interface IApplicationSettings
     {
-        bool LocationConsent { get; set; }
+        bool LocationConsent { get; }
 
-        int Radius { get; set; }
+        int Radius { get; }
+
+        LocationProjection DefaultLocation { get; }
     }
 }

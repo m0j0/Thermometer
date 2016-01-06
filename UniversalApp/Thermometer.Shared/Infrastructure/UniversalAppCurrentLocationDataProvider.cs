@@ -13,8 +13,8 @@ namespace Thermometer.Infrastructure
             var geolocator = new Geolocator();
 
             var geoposition = await geolocator.GetGeopositionAsync();
-            
-            return new LocationProjection {Latitude = geoposition.Coordinate.Latitude, Longitude = geoposition.Coordinate.Longitude};
+
+            return new LocationProjection(geoposition.Coordinate.Longitude, geoposition.Coordinate.Latitude);
         }
     }
 }

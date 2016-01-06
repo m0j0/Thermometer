@@ -22,8 +22,8 @@ namespace Thermometer.Modules
 
         protected override bool LoadInternal()
         {
-            IocContainer.Bind<ICurrentWeatherDataProvider, NarodMonWeatherDataProvider>(
-                DependencyLifecycle.SingleInstance);
+            IocContainer.Bind<ICurrentWeatherDataProvider, NarodMonWeatherDataProvider>(DependencyLifecycle.SingleInstance);
+            IocContainer.Bind<IApplicationSettings, Infrastructure.ApplicationSettings>(DependencyLifecycle.SingleInstance);
 
             return true;
         }

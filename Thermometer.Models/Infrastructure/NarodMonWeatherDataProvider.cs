@@ -13,9 +13,26 @@ namespace Thermometer.Infrastructure
 {
     internal class NarodMonWeatherDataProvider : ICurrentWeatherDataProvider
     {
-        const string Uuid = "afca62c8c564cd1c1bfc42f0402fb42a";
-        const string ApiKey = "90GM7pC3RlMTM";
-        const string ApiStr = @"http://narodmon.ru/api";
+
+        #region Fields
+
+        private readonly IApplicationSettings _applicationSettings;
+        private readonly ICurrentLocationDataProvider _currentLocationDataProvider;
+        private const string Uuid = "afca62c8c564cd1c1bfc42f0402fb42a";
+        private const string ApiKey = "90GM7pC3RlMTM";
+        private const string ApiStr = @"http://narodmon.ru/api";
+
+        #endregion
+
+        #region Constructors
+
+        public NarodMonWeatherDataProvider(IApplicationSettings applicationSettings, ICurrentLocationDataProvider currentLocationDataProvider)
+        {
+            _applicationSettings = applicationSettings;
+            _currentLocationDataProvider = currentLocationDataProvider;
+        }
+
+        #endregion
 
 
         private async Task<TResponse> Send<TResponse>(object request)
@@ -39,12 +56,17 @@ namespace Thermometer.Infrastructure
 
         public async Task<IList<DeviceProjection>> GetDevicesAsync()
         {
+            var location = _applicationSettings.DefaultLocation;
+            if (_applicationSettings.LocationConsent)
+            {
+                location = await _currentLocationDataProvider.GetCurrentUserLocationAsync();
+            }
             var sensors = new SensorsNearbyRequest
             {
                 cmd = "sensorsNearby",
-                lat = 56.2F,
-                lng = 92.58F,
-                radius = 30,
+                lat = (float) location.Latitude,
+                lng = (float) location.Longitude,
+                radius = _applicationSettings.Radius,
                 uuid = Uuid,
                 api_key = ApiKey,
                 lang = "ru"

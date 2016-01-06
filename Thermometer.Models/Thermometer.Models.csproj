@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\ApplicationSettings.cs" />
     <Compile Include="Infrastructure\NarodMonWeatherDataProvider.cs" />
     <Compile Include="Interfaces\IApplicationSettings.cs" />
     <Compile Include="Interfaces\ICurrentLocationDataProvider.cs" />
