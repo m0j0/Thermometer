@@ -32,6 +32,7 @@ namespace Thermometer.ViewModels
             AddViewModel(GetViewModel<CurrentWeatherVm>());
             AddViewModel(GetViewModel<WeatherForecastVm>());
             AddViewModel(GetViewModel<WeatherForecastVm>());
+            AddViewModel(GetViewModel<SensorHistoryVm>());
         }
 
         #endregion
