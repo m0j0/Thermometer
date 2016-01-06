@@ -22,7 +22,11 @@ namespace Thermometer.Modules
 
         protected override bool LoadInternal()
         {
+#if DEBUG
+            IocContainer.Bind<ICurrentWeatherDataProvider, FakeCurrentWeatherDataProvider>(DependencyLifecycle.SingleInstance);
+#else
             IocContainer.Bind<ICurrentWeatherDataProvider, NarodMonWeatherDataProvider>(DependencyLifecycle.SingleInstance);
+#endif
             IocContainer.Bind<IApplicationSettings, Infrastructure.ApplicationSettings>(DependencyLifecycle.SingleInstance);
 
             return true;
@@ -32,6 +36,6 @@ namespace Thermometer.Modules
         {
         }
 
-        #endregion
+#endregion
     }
 }
