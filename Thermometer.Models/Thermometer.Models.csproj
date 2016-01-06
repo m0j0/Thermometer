@@ -37,11 +37,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\NarodMonWeatherDataProvider.cs" />
+    <Compile Include="Interfaces\IApplicationSettings.cs" />
+    <Compile Include="Interfaces\ICurrentLocationDataProvider.cs" />
     <Compile Include="Interfaces\ICurrentWeatherDataProvider.cs" />
     <Compile Include="JsonModels\SensorsNearby.cs" />
     <Compile Include="ModelExtensions.cs" />
     <Compile Include="Modules\ModelModule.cs" />
     <Compile Include="Projections\DeviceProjection.cs" />
+    <Compile Include="Projections\LocationProjection.cs" />
     <Compile Include="Projections\SensorProjection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
