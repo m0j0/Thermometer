@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
@@ -32,7 +33,18 @@ namespace Thermometer.ViewModels
             AddViewModel(GetViewModel<CurrentWeatherVm>());
             AddViewModel(GetViewModel<WeatherForecastVm>());
             AddViewModel(GetViewModel<WeatherForecastVm>());
-            AddViewModel(GetViewModel<SensorHistoryVm>());
+
+            var sensorHistoryVm = GetViewModel<SensorHistoryVm>();
+            sensorHistoryVm.Initialize(new SensorProjection
+            {
+                Id = 4638,
+                Type = 1,
+                Name = "Температура",
+                Value = -23.3F,
+                Unit = "*",
+                Time = DateTime.Now
+            });
+            AddViewModel(sensorHistoryVm);
         }
 
         #endregion

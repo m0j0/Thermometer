@@ -44,6 +44,7 @@
     <Compile Include="Interfaces\ICurrentLocationDataProvider.cs" />
     <Compile Include="Interfaces\ICurrentWeatherDataProvider.cs" />
     <Compile Include="JsonModels\SensorsNearby.cs" />
+    <Compile Include="JsonModels\SensorLog.cs" />
     <Compile Include="ModelExtensions.cs" />
     <Compile Include="Modules\ModelModule.cs" />
     <Compile Include="Projections\DeviceProjection.cs" />

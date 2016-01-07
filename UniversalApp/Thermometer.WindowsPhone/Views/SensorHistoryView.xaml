@@ -31,7 +31,7 @@
 
         <!--https://github.com/xyzzer/WinRTXamlToolkit/blob/master/WinRTXamlToolkit.Sample.UWP/Views/Controls/ChartTestView.xaml-->
         <charting:Chart Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                        Title="Pie Chart">
+                        Title="{Binding Sensor.Name}">
             <charting:Chart.Series>
                 <charting:LineSeries
                     Title="Population"

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MugenMvvmToolkit.Models;
 
 namespace Thermometer.Projections
@@ -16,5 +17,17 @@ namespace Thermometer.Projections
         public string Unit { get; set; }
 
         public DateTime Time { get; set; }
+    }
+
+    public class SensorWithHistoryProjection : SensorProjection
+    {
+        public IList<SensorHistoryData> Data { get; set; }
+    }
+
+    public class SensorHistoryData
+    {
+        public DateTime Time { get; set; }
+
+        public float Value { get; set; }
     }
 }
