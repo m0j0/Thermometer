@@ -6,26 +6,41 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:Thermometer.ViewModels"
+    xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:SensorHistoryVm}"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
+
     <Grid>
-<Grid.RowDefinitions>
-    <RowDefinition Height="Auto" />
-    <RowDefinition Height="Auto" />
-    <RowDefinition Height="*" />
-</Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <TextBlock Grid.Row="0" Grid.Column="0"
-            Text="Период показаний:" />
+                   Text="Период показаний:" />
         <ComboBox Grid.Row="0" Grid.Column="1"
                   ItemsSource="{Binding PeriodTypes}"
                   SelectedValue="{Binding SelectedPeriodType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedValuePath="Item1" DisplayMemberPath="Item2"/>
+                  SelectedValuePath="Item1" DisplayMemberPath="Item2" />
+
+        <!--https://github.com/xyzzer/WinRTXamlToolkit/blob/master/WinRTXamlToolkit.Sample.UWP/Views/Controls/ChartTestView.xaml-->
+        <charting:Chart Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                        Title="Pie Chart">
+            <charting:Chart.Series>
+                <charting:LineSeries
+                    Title="Population"
+                    ItemsSource="{Binding Items}"
+                    IndependentValueBinding="{Binding Item1}"
+                    DependentValueBinding="{Binding Item2}"
+                    IsSelectionEnabled="True" />
+            </charting:Chart.Series>
+        </charting:Chart>
+
     </Grid>
 </UserControl>
