@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +13,6 @@ namespace Thermometer.Infrastructure
 {
     internal class NarodMonWeatherDataProvider : ICurrentWeatherDataProvider
     {
-
         #region Fields
 
         private readonly IApplicationSettings _applicationSettings;
@@ -35,6 +33,75 @@ namespace Thermometer.Infrastructure
 
         #endregion
 
+        #region Implementation
+
+        public async Task<IList<DeviceProjection>> GetDevicesAsync()
+        {
+            var location = _applicationSettings.DefaultLocation;
+            if (_applicationSettings.LocationConsent)
+            {
+                location = await _currentLocationDataProvider.GetCurrentUserLocationAsync();
+            }
+            var sensors = new SensorsNearbyRequest
+            {
+                Cmd = "sensorsNearby",
+                Lat = location.Latitude,
+                Lng = location.Longitude,
+                Radius = _applicationSettings.Radius,
+                Uuid = Uuid,
+                ApiKey = ApiKey,
+                Lang = "ru"
+            };
+            var response = await Send<SensorsNearbyResponse>(sensors);
+
+            var result = new List<DeviceProjection>();
+            foreach (var device in response.Devices)
+            {
+                var projection = new DeviceProjection
+                {
+                    Id = device.Id,
+                    Name = device.Name,
+                    Location = device.Location,
+                    Distance = device.Distance,
+                    Latitude = device.Lat,
+                    Longitude = device.Lng,
+                    Sensors =
+                        device.Sensors.Select(
+                            sensor =>
+                                new SensorProjection
+                                {
+                                    Id = sensor.Id,
+                                    Type = sensor.Type,
+                                    Name = sensor.Name,
+                                    Value = sensor.Value,
+                                    Unit = sensor.Unit,
+                                    Time = ModelExtensions.UnixTimeStampToDateTime(sensor.Time)
+                                }).ToList()
+                };
+                result.Add(projection);
+            }
+            return result;
+        }
+
+        public async Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)
+        {
+            var request = new SensorLogRequest {Cmd = "sensorLog", Id = sensor.Id, Period = "day", Offset = 1, Uuid = Uuid, ApiKey = ApiKey};
+
+            var response = await Send<SensorLogResponse>(request);
+            if (response?.Data == null)
+            {
+                return;
+            }
+
+            foreach (var responseData in response.Data)
+            {
+                sensor.Data.Add(new SensorHistoryData(ModelExtensions.UnixTimeStampToDateTime(responseData.Time), responseData.Value));
+            }
+        }
+
+        #endregion
+
+        #region Methods
 
         private async Task<TResponse> Send<TResponse>(object request)
         {
@@ -55,81 +122,6 @@ namespace Thermometer.Infrastructure
             }
         }
 
-        public async Task<IList<DeviceProjection>> GetDevicesAsync()
-        {
-            var location = _applicationSettings.DefaultLocation;
-            if (_applicationSettings.LocationConsent)
-            {
-                location = await _currentLocationDataProvider.GetCurrentUserLocationAsync();
-            }
-            var sensors = new SensorsNearbyRequest
-            {
-                cmd = "sensorsNearby",
-                lat = (float) location.Latitude,
-                lng = (float) location.Longitude,
-                radius = _applicationSettings.Radius,
-                uuid = Uuid,
-                api_key = ApiKey,
-                lang = "ru"
-            };
-            var response = await Send<SensorsNearbyResponse>(sensors);
-
-            var result = new List<DeviceProjection>();
-            foreach (var device in response.devices)
-            {
-                var projection = new DeviceProjection
-                {
-                    Id = device.id,
-                    Name = device.name,
-                    Location = device.name,
-                    Distance = device.distance,
-                    Latitude = device.lat,
-                    Longitude = device.lng,
-                    Sensors =
-                        device.sensors.Select(
-                            sensor =>
-                                new SensorProjection
-                                {
-                                    Id = sensor.id,
-                                    Type = sensor.type,
-                                    Name = sensor.name,
-                                    Value = sensor.value,
-                                    Unit = sensor.unit,
-                                    Time = ModelExtensions.UnixTimeStampToDateTime(sensor.time)
-                                }).ToList()
-                };
-                result.Add(projection);
-            }
-            return result;
-        }
-
-        public async Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)
-        {
-            var request = new SensorLogRequest
-            {
-                Cmd = "sensorLog",
-                Id = sensor.Id,
-                Period = "day",
-                Offset = 1,
-                Uuid = Uuid,
-                ApiKey = ApiKey
-            };
-
-            if (sensor.Data == null)
-            {
-                sensor.Data = new List<SensorHistoryData>();
-            }
-
-            var response = await Send<SensorLogResponse>(request);
-            if (response?.Data == null)
-            {
-                return;
-            }
-
-            foreach (var responseData in response.Data)
-            {
-                sensor.Data.Add(new SensorHistoryData(ModelExtensions.UnixTimeStampToDateTime(responseData.Time), responseData.Value));
-            }
-        }
+        #endregion
     }
 }

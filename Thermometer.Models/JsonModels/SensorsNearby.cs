@@ -1,45 +1,98 @@
-﻿namespace Thermometer.JsonModels
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace Thermometer.JsonModels
 {
     internal class SensorsNearbyRequest
     {
-        public string cmd { get; set; }
-        public float lat { get; set; }
-        public float lng { get; set; }
-        public int radius { get; set; }
-        public int[] types { get; set; }
-        public string uuid { get; set; }
-        public string api_key { get; set; }
-        public string lang { get; set; }
-    }
+        [JsonProperty("cmd")]
+        public string Cmd { get; set; }
 
-    internal class SensorsNearbyResponse
-    {
-        public SensorsNearbyResponseDevice[] devices { get; set; }
-    }
+        [JsonProperty("lat")]
+        public double Lat { get; set; }
 
-    internal class SensorsNearbyResponseDevice
-    {
-        public int id { get; set; }
-        public int my { get; set; }
-        public string name { get; set; }
-        public string location { get; set; }
-        public float distance { get; set; }
-        public int time { get; set; }
-        public float lat { get; set; }
-        public float lng { get; set; }
-        public int liked { get; set; }
-        public int uptime { get; set; }
-        public SensorsNearbyResponseSensor[] sensors { get; set; }
+        [JsonProperty("lng")]
+        public double Lng { get; set; }
+
+        [JsonProperty("radius")]
+        public int Radius { get; set; }
+
+        [JsonProperty("types")]
+        public IList<int> Types { get; set; }
+
+        [JsonProperty("uuid")]
+        public string Uuid { get; set; }
+
+        [JsonProperty("api_key")]
+        public string ApiKey { get; set; }
+
+        [JsonProperty("lang")]
+        public string Lang { get; set; }
     }
 
     internal class SensorsNearbyResponseSensor
     {
-        public int id { get; set; }
-        public int pub { get; set; }
-        public int type { get; set; }
-        public string name { get; set; }
-        public float value { get; set; }
-        public string unit { get; set; }
-        public int time { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("pub")]
+        public int Pub { get; set; }
+
+        [JsonProperty("type")]
+        public int Type { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("value")]
+        public double Value { get; set; }
+
+        [JsonProperty("unit")]
+        public string Unit { get; set; }
+
+        [JsonProperty("time")]
+        public int Time { get; set; }
+    }
+
+    internal class SensorsNearbyResponseDevice
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("my")]
+        public int My { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("location")]
+        public string Location { get; set; }
+
+        [JsonProperty("distance")]
+        public double Distance { get; set; }
+
+        [JsonProperty("time")]
+        public int Time { get; set; }
+
+        [JsonProperty("lat")]
+        public double Lat { get; set; }
+
+        [JsonProperty("lng")]
+        public double Lng { get; set; }
+
+        [JsonProperty("liked")]
+        public int Liked { get; set; }
+
+        [JsonProperty("uptime")]
+        public int Uptime { get; set; }
+
+        [JsonProperty("sensors")]
+        public IList<SensorsNearbyResponseSensor> Sensors { get; set; }
+    }
+
+    internal class SensorsNearbyResponse
+    {
+        [JsonProperty("devices")]
+        public IList<SensorsNearbyResponseDevice> Devices { get; set; }
     }
 }

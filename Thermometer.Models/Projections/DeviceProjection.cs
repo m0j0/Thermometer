@@ -11,11 +11,11 @@ namespace Thermometer.Projections
 
         public string Location { get; set; }
 
-        public float Distance { get; set; }
+        public double Distance { get; set; }
 
-        public float Latitude { get; set; }
+        public double Latitude { get; set; }
 
-        public float Longitude { get; set; }
+        public double Longitude { get; set; }
 
         public IList<SensorProjection> Sensors { get; set; }
     }

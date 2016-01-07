@@ -30,7 +30,7 @@ namespace Thermometer.ViewModels
         {
             base.OnInitialized();
 
-          //  AddViewModel(GetViewModel<CurrentWeatherVm>());
+            AddViewModel(GetViewModel<CurrentWeatherVm>());
             AddViewModel(GetViewModel<WeatherForecastVm>());
             AddViewModel(GetViewModel<WeatherForecastVm>());
 

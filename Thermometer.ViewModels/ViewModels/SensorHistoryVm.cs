@@ -32,12 +32,7 @@ namespace Thermometer.ViewModels
                 Tuple.Create(SensorHistoryPeriod.Month, SensorHistoryPeriod.Month.ToText())
             };
 
-            var random = new Random();
             Items = new SynchronizedNotifiableCollection<SensorHistoryData>();
-            for (int i = 0; i < 24; i++)
-            {
-                Items.Add(new SensorHistoryData(DateTime.Now - TimeSpan.FromHours(i), random.NextDouble() * 50));
-            }
         }
 
         #endregion

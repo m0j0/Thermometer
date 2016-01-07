@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MugenMvvmToolkit;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
 
@@ -44,7 +45,12 @@ namespace Thermometer.Infrastructure
 
         public Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)
         {
-            throw new NotImplementedException();
+            var random = new Random();
+            for (int i = 0; i < 24; i++)
+            {
+                sensor.Data.Add(new SensorHistoryData(DateTime.Now - TimeSpan.FromHours(i), (random.NextDouble() - 0.5) * 50));
+            }
+            return Empty.Task;
         }
     }
 }
