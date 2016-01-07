@@ -139,8 +139,16 @@
       <HintPath>..\..\packages\MugenMvvmToolkit.AutofacContainer.5.1.0\lib\portable-net45+win+wpa81+wp80\MugenMvvmToolkit.AutofacContainer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MugenMvvmToolkit.Binding, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MugenMvvmToolkit.Binding.5.1.0\lib\portable-win81+wpa81\MugenMvvmToolkit.Binding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MugenMvvmToolkit.WinRT, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MugenMvvmToolkit.5.1.0\lib\portable-win81+wpa81\MugenMvvmToolkit.WinRT.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MugenMvvmToolkit.WinRT.Binding, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MugenMvvmToolkit.Binding.5.1.0\lib\portable-win81+wpa81\MugenMvvmToolkit.WinRT.Binding.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WinRTXamlToolkit, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">

@@ -41,5 +41,10 @@ namespace Thermometer.Infrastructure
 
             return Task.FromResult<IList<DeviceProjection>>(result);
         }
+
+        public Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

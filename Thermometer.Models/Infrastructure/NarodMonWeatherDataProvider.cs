@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -100,6 +101,35 @@ namespace Thermometer.Infrastructure
                 result.Add(projection);
             }
             return result;
+        }
+
+        public async Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)
+        {
+            var request = new SensorLogRequest
+            {
+                Cmd = "sensorLog",
+                Id = sensor.Id,
+                Period = "day",
+                Offset = 1,
+                Uuid = Uuid,
+                ApiKey = ApiKey
+            };
+
+            if (sensor.Data == null)
+            {
+                sensor.Data = new List<SensorHistoryData>();
+            }
+
+            var response = await Send<SensorLogResponse>(request);
+            if (response?.Data == null)
+            {
+                return;
+            }
+
+            foreach (var responseData in response.Data)
+            {
+                sensor.Data.Add(new SensorHistoryData(ModelExtensions.UnixTimeStampToDateTime(responseData.Time), responseData.Value));
+            }
         }
     }
 }

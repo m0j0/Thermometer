@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MugenMvvmToolkit.Collections;
+using MugenMvvmToolkit.Interfaces.Collections;
 using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.ViewModels;
 using Thermometer.Infrastructure;
@@ -31,10 +33,10 @@ namespace Thermometer.ViewModels
             };
 
             var random = new Random();
-            Items = new List<Tuple<int, int>>();
-            for (int i = 0; i < 20; i++)
+            Items = new SynchronizedNotifiableCollection<SensorHistoryData>();
+            for (int i = 0; i < 24; i++)
             {
-                Items.Add(Tuple.Create(i, random.Next(0, 50)));
+                Items.Add(new SensorHistoryData(DateTime.Now - TimeSpan.FromHours(i), random.NextDouble() * 50));
             }
         }
 
@@ -46,7 +48,7 @@ namespace Thermometer.ViewModels
 
         public SensorHistoryPeriod SelectedPeriodType { get; set; }
 
-        public IList<Tuple<int, int>> Items { get; }
+        public INotifiableCollection<SensorHistoryData> Items { get; }
 
         public string DisplayName { get; set; } = "График";
 
@@ -63,9 +65,12 @@ namespace Thermometer.ViewModels
             SelectedPeriodType = SensorHistoryPeriod.Day;
         }
 
-        public void Initialize(SensorProjection projection)
+        public async void Initialize(SensorProjection projection)
         {
             Sensor = projection;
+            await _currentWeatherDataProvider.UpdateSensorHistoryAsync(Sensor, SelectedPeriodType, DateTime.Now).WithBusyIndicator(this);
+            Items.Clear();
+            Items.AddRange(projection.Data);
         }
 
         #endregion

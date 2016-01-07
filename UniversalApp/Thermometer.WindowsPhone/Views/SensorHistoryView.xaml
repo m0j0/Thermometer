@@ -36,8 +36,8 @@
                 <charting:LineSeries
                     Title="Population"
                     ItemsSource="{Binding Items}"
-                    IndependentValueBinding="{Binding Item1}"
-                    DependentValueBinding="{Binding Item2}"
+                    IndependentValueBinding="{Binding Time}"
+                    DependentValueBinding="{Binding Value}"
                     IsSelectionEnabled="True" />
             </charting:Chart.Series>
         </charting:Chart>
