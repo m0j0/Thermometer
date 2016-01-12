@@ -7,7 +7,7 @@ namespace Thermometer.Infrastructure
     {
         public bool LocationConsent => true;
 
-        public int Radius => 10;
+        public int Radius => 20;
 
         public LocationProjection DefaultLocation => new LocationProjection(92.8805, 56.029);
     }
