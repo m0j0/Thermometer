@@ -94,6 +94,9 @@
     <Compile Include="Views\WeatherForecastView.xaml.cs">
       <DependentUpon>WeatherForecastView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Wrappers\DisplayWrapperView.xaml.cs">
+      <DependentUpon>DisplayWrapperView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WeatherForecastView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wrappers\DisplayWrapperView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
