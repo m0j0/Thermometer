@@ -11,15 +11,17 @@ namespace Thermometer.Infrastructure
     {
         public Task<IList<DeviceProjection>> GetDevicesAsync()
         {
+            var random = new Random();
+
             var result = new List<DeviceProjection>();
             for (var i = 0; i < 5; i++)
             {
                 var device = new DeviceProjection
                 {
                     Id = i,
-                    Name = $"Название {i}",
-                    Location = $"Положение {i}",
-                    Distance = i*5,
+                    Name = $"Устройство {i}",
+                    Location = $"Положение устройства {i}",
+                    Distance = random.NextDouble() * 50,
                     Latitude = 1,
                     Longitude = 1,
                     Sensors = new List<SensorProjection>()
@@ -30,8 +32,8 @@ namespace Thermometer.Infrastructure
                     {
                         Id = i + j,
                         Type = 1,
-                        Name = $"Название {j}",
-                        Value = j,
+                        Name = $"Датчик {j}",
+                        Value = (random.NextDouble() - 0.5) * 50,
                         Unit = " гр",
                         Time = DateTime.Now
                     });

@@ -43,6 +43,7 @@
     <Compile Include="Interfaces\IApplicationSettings.cs" />
     <Compile Include="Interfaces\ICurrentLocationDataProvider.cs" />
     <Compile Include="Interfaces\ICurrentWeatherDataProvider.cs" />
+    <Compile Include="Interfaces\IDisplayWrapperVm.cs" />
     <Compile Include="JsonModels\SensorsNearby.cs" />
     <Compile Include="JsonModels\SensorLog.cs" />
     <Compile Include="ModelExtensions.cs" />

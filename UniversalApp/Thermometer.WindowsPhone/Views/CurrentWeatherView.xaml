@@ -7,45 +7,72 @@
     xmlns:viewModels="using:Thermometer.ViewModels"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Thermometer.Behaviors"
-    mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance viewModels:CurrentWeatherVm}"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:markupExtensions="using:MugenMvvmToolkit.WinRT.MarkupExtensions"
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:CurrentWeatherVm}"
+    d:DesignHeight="300" d:DesignWidth="400"
+    x:Name="MainUserControl">
+    <UserControl.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </UserControl.Resources>
 
     <interactivity:Interaction.Behaviors>
         <behaviors:ProgressBehavior IsVisible="{Binding Path=IsBusy}"
                                     Text="{Binding Path=BusyMessage}" />
     </interactivity:Interaction.Behaviors>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MaxHeight="300" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
-        <ListView Grid.Row="1" ItemsSource="{Binding Items}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="Aqua">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" />
+    <ListView ItemsSource="{Binding Items}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Border BorderThickness="1" BorderBrush="Aqua">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                            <ListView ItemsSource="{Binding Sensors}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Устройство:" />
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Text="{Binding Name}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="Местоположение:" />
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Text="{Binding Location}" />
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="Расстояние:" />
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                                   Text="{Binding Distance}" />
+
+                        <ListView Grid.Row="3" Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  ItemsSource="{Binding Sensors}"
+                                  IsItemClickEnabled="True"
+                                  markupExtensions:View.Bind="ItemClick $Element(MainUserControl).DataContext.ShowSensorCommand, CommandParameter=$args.ClickedItem, Mode=OneTime, ToggleEnabledState=False">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1" BorderBrush="Red"
+                                            Margin="3">
                                         <StackPanel>
                                             <TextBlock Text="{Binding Name}" />
                                             <TextBlock Text="{Binding Value}" />
                                             <TextBlock Text="{Binding Unit}" />
                                         </StackPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </UserControl>

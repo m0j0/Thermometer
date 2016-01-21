@@ -24,6 +24,7 @@ namespace Thermometer.Modules
         {
 #if DEBUG
             IocContainer.Bind<ICurrentWeatherDataProvider, FakeCurrentWeatherDataProvider>(DependencyLifecycle.SingleInstance);
+            //IocContainer.Bind<ICurrentWeatherDataProvider, NarodMonWeatherDataProvider>(DependencyLifecycle.SingleInstance);
 #else
             IocContainer.Bind<ICurrentWeatherDataProvider, NarodMonWeatherDataProvider>(DependencyLifecycle.SingleInstance);
 #endif
