@@ -4,7 +4,7 @@ using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
 
-namespace Thermometer.ViewModels
+namespace Thermometer.ViewModels.Weather
 {
     public class WeatherForecastVm : CloseableViewModel, IHasDisplayName
     {
@@ -22,8 +22,7 @@ namespace Thermometer.ViewModels
         }
 
         #endregion
-
-
+        
         #region Properties
 
         public string DisplayName { get; set; }

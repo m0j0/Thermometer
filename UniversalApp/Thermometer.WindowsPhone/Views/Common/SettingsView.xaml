@@ -19,11 +19,11 @@
         <TextBlock Grid.Row="0"
                    Text="Разрешить использовать местоположение" />
         <ToggleSwitch Grid.Row="1"
-                      IsOn="{Binding LocationConsent}" />
+                      IsOn="{Binding LocationConsent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <TextBlock Grid.Row="2"
                    Text="Радиус для поиска датчиков" />
         <Slider Grid.Row="3"
-                Value="{Binding DeviceRadius}" />
+                Value="{Binding DeviceRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

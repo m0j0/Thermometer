@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 
-namespace Thermometer.Views
+namespace Thermometer.Views.Weather
 {
     public sealed partial class CurrentWeatherView : UserControl
     {

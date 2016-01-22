@@ -4,6 +4,7 @@ using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
 using Thermometer.ViewModels.Common;
+using Thermometer.ViewModels.Weather;
 
 namespace Thermometer.ViewModels
 {

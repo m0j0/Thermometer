@@ -84,17 +84,17 @@
     <Compile Include="Views\Common\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CurrentWeatherView.xaml.cs">
+    <Compile Include="Views\Weather\CurrentWeatherView.xaml.cs">
       <DependentUpon>CurrentWeatherView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\SensorHistoryView.xaml.cs">
+    <Compile Include="Views\Weather\SensorHistoryView.xaml.cs">
       <DependentUpon>SensorHistoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WeatherForecastView.xaml.cs">
+    <Compile Include="Views\Weather\WeatherForecastView.xaml.cs">
       <DependentUpon>WeatherForecastView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Wrappers\DisplayWrapperView.xaml.cs">
@@ -119,7 +119,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CurrentWeatherView.xaml">
+    <Page Include="Views\Weather\CurrentWeatherView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,11 +127,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SensorHistoryView.xaml">
+    <Page Include="Views\Weather\SensorHistoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WeatherForecastView.xaml">
+    <Page Include="Views\Weather\WeatherForecastView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

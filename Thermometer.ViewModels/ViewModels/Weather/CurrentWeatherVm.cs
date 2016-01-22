@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
 using MugenMvvmToolkit;
 using MugenMvvmToolkit.Interfaces.Models;
@@ -8,7 +7,7 @@ using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
 
-namespace Thermometer.ViewModels
+namespace Thermometer.ViewModels.Weather
 {
     public class CurrentWeatherVm : CloseableViewModel, IHasDisplayName
     {

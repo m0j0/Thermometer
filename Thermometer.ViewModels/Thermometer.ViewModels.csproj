@@ -47,10 +47,10 @@
     <Compile Include="ThermometerApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Common\SettingsVm.cs" />
-    <Compile Include="ViewModels\CurrentWeatherVm.cs" />
+    <Compile Include="ViewModels\Weather\CurrentWeatherVm.cs" />
     <Compile Include="ViewModels\MainVm.cs" />
-    <Compile Include="ViewModels\SensorHistoryVm.cs" />
-    <Compile Include="ViewModels\WeatherForecastVm.cs" />
+    <Compile Include="ViewModels\Weather\SensorHistoryVm.cs" />
+    <Compile Include="ViewModels\Weather\WeatherForecastVm.cs" />
     <Compile Include="ViewModels\Wrappers\DisplayWrapperVm.cs" />
   </ItemGroup>
   <ItemGroup>

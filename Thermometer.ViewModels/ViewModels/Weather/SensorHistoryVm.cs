@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MugenMvvmToolkit.Collections;
 using MugenMvvmToolkit.Interfaces.Collections;
 using MugenMvvmToolkit.Interfaces.Models;
@@ -11,7 +8,7 @@ using Thermometer.Infrastructure;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
 
-namespace Thermometer.ViewModels
+namespace Thermometer.ViewModels.Weather
 {
     public class SensorHistoryVm : CloseableViewModel, IHasDisplayName
     {
