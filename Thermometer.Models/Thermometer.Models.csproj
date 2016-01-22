@@ -36,7 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\ApplicationSettings.cs" />
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\FakeCurrentWeatherDataProvider.cs" />
     <Compile Include="Infrastructure\NarodMonWeatherDataProvider.cs" />

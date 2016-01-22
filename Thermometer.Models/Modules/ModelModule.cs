@@ -11,8 +11,7 @@ namespace Thermometer.Modules
     {
         #region Constructors
 
-        public ModelModule()
-            : base(false, LoadMode.All)
+        public ModelModule() : base(false, LoadMode.All)
         {
         }
 
@@ -28,7 +27,6 @@ namespace Thermometer.Modules
 #else
             IocContainer.Bind<ICurrentWeatherDataProvider, NarodMonWeatherDataProvider>(DependencyLifecycle.SingleInstance);
 #endif
-            IocContainer.Bind<IApplicationSettings, Infrastructure.ApplicationSettings>(DependencyLifecycle.SingleInstance);
 
             return true;
         }
@@ -37,6 +35,6 @@ namespace Thermometer.Modules
         {
         }
 
-#endregion
+        #endregion
     }
 }

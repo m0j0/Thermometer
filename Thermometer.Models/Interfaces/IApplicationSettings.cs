@@ -1,4 +1,5 @@
-﻿using Thermometer.Projections;
+﻿using Thermometer.Models;
+using Thermometer.Projections;
 
 namespace Thermometer.Interfaces
 {
@@ -9,5 +10,9 @@ namespace Thermometer.Interfaces
         int DeviceRadius { get; }
 
         LocationProjection DefaultLocation { get; }
+
+        SettingsModel GetApplicationSettings();
+
+        void UpdateSettings(SettingsModel settings);
     }
 }

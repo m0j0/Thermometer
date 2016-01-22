@@ -1,28 +1,14 @@
 ﻿using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.ViewModels;
-using Thermometer.Interfaces;
 using Thermometer.Models;
 
 namespace Thermometer.ViewModels.Common
 {
     public class SettingsVm : EditableViewModel<SettingsModel>, IHasDisplayName
     {
-        #region Fields
-
-        private readonly IApplicationSettings _applicationSettings;
-
-        #endregion
-
-        #region Constructors
-
-        public SettingsVm(IApplicationSettings applicationSettings)
-        {
-            _applicationSettings = applicationSettings;
-        }
-
-        #endregion
-
         #region Properties
+
+        public string DisplayName { get; set; } = "Настройки";
 
         public bool LocationConsent
         {
@@ -37,7 +23,5 @@ namespace Thermometer.ViewModels.Common
         }
 
         #endregion
-
-        public string DisplayName { get; set; } = "Настройки";
     }
 }

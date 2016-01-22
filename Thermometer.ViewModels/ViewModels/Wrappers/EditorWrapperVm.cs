@@ -18,25 +18,9 @@ namespace Thermometer.ViewModels.Wrappers
 
         #endregion
 
-        #region Implementation of IEditableWindowViewModel
+        #region Commands
 
         public ICommand SaveCommand { get; set; }
-
-        #endregion
-
-        #region Overrides of WrapperViewModelBase<T>
-
-        protected override void OnClosed(object parameter)
-        {
-            if (!OperationResult.GetValueOrDefault() && ViewModel != null && ViewModel.IsEntityInitialized)
-            {
-                ViewModel.CancelChanges();
-            }
-        }
-
-        #endregion
-
-        #region Command's methosd
 
         private Task SaveAsync(object obj)
         {
@@ -47,6 +31,18 @@ namespace Thermometer.ViewModels.Wrappers
         private bool CanSave(object obj)
         {
             return ViewModel != null && ViewModel.HasChanges && ViewModel.IsValid;
+        }
+
+        #endregion
+
+        #region Methods
+
+        protected override void OnClosed(object parameter)
+        {
+            if (!OperationResult.GetValueOrDefault() && ViewModel != null && ViewModel.IsEntityInitialized)
+            {
+                ViewModel.CancelChanges();
+            }
         }
 
         #endregion

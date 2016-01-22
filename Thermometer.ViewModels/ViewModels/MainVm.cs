@@ -14,12 +14,15 @@ namespace Thermometer.ViewModels
     {
         #region Fields
 
+        private readonly IApplicationSettings _applicationSettings;
+
         #endregion
 
         #region Constructors
 
-        public MainVm()
+        public MainVm(IApplicationSettings applicationSettings)
         {
+            _applicationSettings = applicationSettings;
             OpenSettingsCommand = new RelayCommand(OpenSettings);
         }
 
@@ -34,7 +37,14 @@ namespace Thermometer.ViewModels
             using (var vm = GetViewModel<SettingsVm>())
             using (var wrapper = vm.Wrap<IEditorWrapperVm>())
             {
-                await wrapper.ShowAsync();
+                vm.InitializeEntity(_applicationSettings.GetApplicationSettings(), false);
+
+                if (!await wrapper.ShowAsync())
+                {
+                    return;
+                }
+
+                _applicationSettings.UpdateSettings(vm.Entity);
             }
         }
 
