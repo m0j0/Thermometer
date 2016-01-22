@@ -49,6 +49,7 @@ namespace Thermometer.ViewModels
             AddViewModel(GetViewModel<CurrentWeatherVm>());
             AddViewModel(GetViewModel<SettingsVm>());
         }
+        
 
         #endregion
     }

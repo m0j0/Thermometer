@@ -16,6 +16,7 @@ namespace Thermometer.Views
         public MainPage()
         {
             InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Required;
             _navigationHelper = new NavigationHelper(this);
         }
 

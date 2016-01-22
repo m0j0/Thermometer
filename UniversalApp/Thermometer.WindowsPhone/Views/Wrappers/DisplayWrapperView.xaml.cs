@@ -16,6 +16,7 @@ namespace Thermometer.Views.Wrappers
         public DisplayWrapperView()
         {
             InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Required;
             _navigationHelper = new NavigationHelper(this);
         }
 
