@@ -47,6 +47,7 @@
     <Compile Include="JsonModels\SensorsNearby.cs" />
     <Compile Include="JsonModels\SensorLog.cs" />
     <Compile Include="ModelExtensions.cs" />
+    <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Modules\ModelModule.cs" />
     <Compile Include="Projections\DeviceProjection.cs" />
     <Compile Include="Projections\LocationProjection.cs" />

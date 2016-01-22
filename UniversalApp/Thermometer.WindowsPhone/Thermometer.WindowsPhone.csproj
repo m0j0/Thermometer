@@ -81,6 +81,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Behaviors\ProgressBehavior.cs" />
+    <Compile Include="Views\Common\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CurrentWeatherView.xaml.cs">
       <DependentUpon>CurrentWeatherView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
     <Content Include="Assets\WideLogo.scale-240.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Common\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CurrentWeatherView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

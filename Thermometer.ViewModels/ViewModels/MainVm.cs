@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
+using Thermometer.ViewModels.Common;
 
 namespace Thermometer.ViewModels
 {
@@ -45,6 +46,7 @@ namespace Thermometer.ViewModels
             });
             AddViewModel(sensorHistoryVm);
             AddViewModel(GetViewModel<CurrentWeatherVm>());
+            AddViewModel(GetViewModel<SettingsVm>());
         }
 
         #endregion

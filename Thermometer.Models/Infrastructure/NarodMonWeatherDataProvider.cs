@@ -47,7 +47,7 @@ namespace Thermometer.Infrastructure
                 Cmd = "sensorsNearby",
                 Lat = location.Latitude,
                 Lng = location.Longitude,
-                Radius = _applicationSettings.Radius,
+                Radius = _applicationSettings.DeviceRadius,
                 Uuid = Uuid,
                 ApiKey = ApiKey,
                 Lang = "ru"

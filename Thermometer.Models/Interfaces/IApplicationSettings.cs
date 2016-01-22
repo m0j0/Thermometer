@@ -6,7 +6,7 @@ namespace Thermometer.Interfaces
     {
         bool LocationConsent { get; }
 
-        int Radius { get; }
+        int DeviceRadius { get; }
 
         LocationProjection DefaultLocation { get; }
     }

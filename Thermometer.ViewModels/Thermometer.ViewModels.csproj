@@ -46,6 +46,7 @@
     <Compile Include="Modules\ViewModelWrapperRegistrationModule.cs" />
     <Compile Include="ThermometerApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Common\SettingsVm.cs" />
     <Compile Include="ViewModels\CurrentWeatherVm.cs" />
     <Compile Include="ViewModels\MainVm.cs" />
     <Compile Include="ViewModels\SensorHistoryVm.cs" />
@@ -68,6 +69,7 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
