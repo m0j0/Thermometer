@@ -7,5 +7,10 @@ namespace Thermometer.Models
         public bool LocationConsent { get; set; }
 
         public int DeviceRadius { get; set; }
+
+        public SettingsModel Clone()
+        {
+            return new SettingsModel {LocationConsent = LocationConsent, DeviceRadius = DeviceRadius};
+        }
     }
 }
