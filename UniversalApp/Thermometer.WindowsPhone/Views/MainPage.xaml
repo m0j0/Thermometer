@@ -16,6 +16,7 @@
         <behaviors:ProgressBehavior IsVisible="{Binding Path=IsBusy}"
                                     Text="{Binding Path=BusyMessage}" />
     </interactivity:Interaction.Behaviors>
+
     <Grid>
         <Pivot ItemsSource="{Binding ItemsSource}"
                SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
@@ -31,4 +32,12 @@
             </Pivot.ItemTemplate>
         </Pivot>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Setting" Label="Настройки" Command="{Binding Path=OpenSettingsCommand}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

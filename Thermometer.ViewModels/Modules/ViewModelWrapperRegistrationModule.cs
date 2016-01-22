@@ -12,6 +12,7 @@ namespace Thermometer.Modules
         protected override void RegisterWrappers(IConfigurableWrapperManager wrapperManager)
         {
             wrapperManager.AddWrapper<IDisplayWrapperVm, DisplayWrapperVm>();
+            wrapperManager.AddWrapper<IEditorWrapperVm, EditorWrapperVm>();
         }
 
         #endregion

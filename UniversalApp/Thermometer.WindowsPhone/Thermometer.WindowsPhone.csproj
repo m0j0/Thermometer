@@ -100,6 +100,9 @@
     <Compile Include="Views\Wrappers\DisplayWrapperView.xaml.cs">
       <DependentUpon>DisplayWrapperView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Wrappers\EditorWrapperView.xaml.cs">
+      <DependentUpon>EditorWrapperView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Wrappers\DisplayWrapperView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Wrappers\EditorWrapperView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

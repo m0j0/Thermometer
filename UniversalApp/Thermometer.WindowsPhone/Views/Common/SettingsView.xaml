@@ -21,8 +21,10 @@
         <ToggleSwitch Grid.Row="1"
                       IsOn="{Binding LocationConsent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <TextBlock Grid.Row="2"
-                   Text="Радиус для поиска датчиков" />
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Text="Радиус для поиска датчиков" />
+            <TextBlock Text="{Binding DeviceRadius}" />
+        </StackPanel>
         <Slider Grid.Row="3"
                 Value="{Binding DeviceRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>

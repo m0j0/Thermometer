@@ -52,6 +52,7 @@
     <Compile Include="ViewModels\Weather\SensorHistoryVm.cs" />
     <Compile Include="ViewModels\Weather\WeatherForecastVm.cs" />
     <Compile Include="ViewModels\Wrappers\DisplayWrapperVm.cs" />
+    <Compile Include="ViewModels\Wrappers\EditorWrapperVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MugenMvvmToolkit, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">

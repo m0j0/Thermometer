@@ -1,5 +1,7 @@
 using System;
-using System.Collections.Generic;
+using System.Windows.Input;
+using MugenMvvmToolkit;
+using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
@@ -18,6 +20,22 @@ namespace Thermometer.ViewModels
 
         public MainVm()
         {
+            OpenSettingsCommand = new RelayCommand(OpenSettings);
+        }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand OpenSettingsCommand { get; }
+
+        private async void OpenSettings()
+        {
+            using (var vm = GetViewModel<SettingsVm>())
+            using (var wrapper = vm.Wrap<IEditorWrapperVm>())
+            {
+                await wrapper.ShowAsync();
+            }
         }
 
         #endregion
@@ -47,10 +65,8 @@ namespace Thermometer.ViewModels
             });
             AddViewModel(sensorHistoryVm);
             AddViewModel(GetViewModel<CurrentWeatherVm>());
-            AddViewModel(GetViewModel<SettingsVm>());
         }
         
-
         #endregion
     }
 }
