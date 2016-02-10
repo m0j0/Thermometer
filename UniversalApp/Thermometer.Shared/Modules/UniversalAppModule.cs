@@ -17,6 +17,7 @@ namespace Thermometer.Modules
         {
             IocContainer.Bind<ICurrentLocationDataProvider, UniversalAppCurrentLocationDataProvider>(DependencyLifecycle.SingleInstance);
             IocContainer.Bind<IApplicationSettings, Infrastructure.ApplicationSettings>(DependencyLifecycle.SingleInstance);
+            IocContainer.Bind<ISensorPinManager, SensorPinManager>(DependencyLifecycle.SingleInstance);
             return true;
         }
 

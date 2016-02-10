@@ -44,6 +44,7 @@
     <Compile Include="Interfaces\ICurrentWeatherDataProvider.cs" />
     <Compile Include="Interfaces\IDisplayWrapperVm.cs" />
     <Compile Include="Interfaces\IEditorWrapperVm.cs" />
+    <Compile Include="Interfaces\ISensorPinManager.cs" />
     <Compile Include="JsonModels\SensorsNearby.cs" />
     <Compile Include="JsonModels\SensorLog.cs" />
     <Compile Include="ModelExtensions.cs" />

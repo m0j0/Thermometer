@@ -14,18 +14,21 @@ namespace Thermometer.ViewModels.Weather
         #region Fields
 
         private readonly ICurrentWeatherDataProvider _currentWeatherDataProvider;
+        private readonly ISensorPinManager _sensorPinManager;
 
         #endregion
 
         #region Constructors
 
-        public CurrentWeatherVm(ICurrentWeatherDataProvider currentWeatherDataProvider)
+        public CurrentWeatherVm(ICurrentWeatherDataProvider currentWeatherDataProvider, ISensorPinManager sensorPinManager)
         {
             _currentWeatherDataProvider = currentWeatherDataProvider;
+            _sensorPinManager = sensorPinManager;
 
             _currentWeatherDataProvider.GetDevicesAsync().ContinueWith(task => Items = task.Result).WithBusyIndicator(this);
 
             ShowSensorCommand = new RelayCommand<SensorProjection>(ShowSensor, CanShowSensor, this);
+            ChangeSensorPinStatusCommand = new RelayCommand<SensorProjection>(ChangeSensorPinStatus, CanChangeSensorPinStatus, this);
         }
 
         #endregion
@@ -50,6 +53,16 @@ namespace Thermometer.ViewModels.Weather
         }
 
         public ICommand ChangeSensorPinStatusCommand { get; }
+
+        private void ChangeSensorPinStatus(SensorProjection projection)
+        {
+            _sensorPinManager.ChangePinStatusAsync(projection.Id);
+        }
+
+        private bool CanChangeSensorPinStatus(SensorProjection projection)
+        {
+            return _sensorPinManager != null && projection != null;
+        }
 
         #endregion
 

@@ -16,9 +16,22 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ApplicationSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SensorPinManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\UniversalAppCurrentLocationDataProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Modules\UniversalAppModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NavigationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SuspensionManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\square150x150Tile-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\square30x30Tile-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\square310x310Tile-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\square70x70Tile-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\squareTileLogoUpdate-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)square150x150Tile-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)square30x30Tile-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)square310x310Tile-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)square70x70Tile-sdk.png" />
+    <Content Include="$(MSBuildThisFileDirectory)squareTileLogoUpdate-sdk.png" />
   </ItemGroup>
 </Project>
