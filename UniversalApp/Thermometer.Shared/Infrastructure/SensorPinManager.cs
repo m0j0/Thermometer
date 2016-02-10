@@ -10,7 +10,16 @@ namespace Thermometer.Infrastructure
     public class SensorPinManager : ISensorPinManager
     {
         public async Task ChangePinStatusAsync(int idSensor)
-        {               
+        {
+
+            if (Windows.UI.StartScreen.SecondaryTile.Exists(idSensor.ToString()))
+            {
+                SecondaryTile secondaryTile2 = new SecondaryTile(idSensor.ToString());
+                // Now make the delete request.
+                bool isUnpinned = await secondaryTile2.RequestDeleteAsync();
+                return;
+
+            }
             // Prepare package images for all four tile sizes in our tile to be pinned as well as for the square30x30 logo used in the Apps view.  
             Uri square150x150Logo = new Uri("ms-appx:///Assets/square150x150Tile-sdk.png");
             Uri wide310x150Logo = new Uri("ms-appx:///Assets/wide310x150Tile-sdk.png");
@@ -26,7 +35,7 @@ namespace Thermometer.Infrastructure
             // It can be set to TileSize.Square150x150, TileSize.Wide310x150, or TileSize.Default.  
             // If set to TileSize.Wide310x150, then the asset for the wide size must be supplied as well.
             // TileSize.Default will default to the wide size if a wide size is provided, and to the medium size otherwise. 
-            SecondaryTile secondaryTile = new SecondaryTile("124123",
+            SecondaryTile secondaryTile = new SecondaryTile(idSensor.ToString(),
                                                             idSensor.ToString(),
                                                             tileActivationArguments,
                                                             square150x150Logo,
@@ -55,6 +64,11 @@ namespace Thermometer.Infrastructure
                 // work after RequestCreateForSelectionAsync or RequestCreateAsync returns, see Scenario9_PinTileAndUpdateOnSuspend in the SecondaryTiles.WindowsPhone project.
                 await secondaryTile.RequestCreateAsync();
 
+        }
+
+        public bool IsSensorPinned(int idSensor)
+        {
+            return Windows.UI.StartScreen.SecondaryTile.Exists(idSensor.ToString());
         }
     }
 }

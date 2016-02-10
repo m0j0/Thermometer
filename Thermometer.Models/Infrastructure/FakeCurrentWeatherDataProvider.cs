@@ -30,7 +30,7 @@ namespace Thermometer.Infrastructure
                 {
                     device.Sensors.Add(new SensorProjection
                     {
-                        Id = i + j,
+                        Id = i * 10 + j,
                         Type = 1,
                         Name = $"Датчик {j}",
                         Value = (random.NextDouble() - 0.5) * 50,
