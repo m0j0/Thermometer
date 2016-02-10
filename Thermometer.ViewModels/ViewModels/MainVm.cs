@@ -60,20 +60,20 @@ namespace Thermometer.ViewModels
         {
             base.OnInitialized();
 
-            AddViewModel(GetViewModel<WeatherForecastVm>());
-            AddViewModel(GetViewModel<WeatherForecastVm>());
+            //AddViewModel(GetViewModel<WeatherForecastVm>());
+            //AddViewModel(GetViewModel<WeatherForecastVm>());
 
-            var sensorHistoryVm = GetViewModel<SensorHistoryVm>();
-            sensorHistoryVm.Initialize(new SensorProjection
-            {
-                Id = 4638,
-                Type = 1,
-                Name = "Температура",
-                Value = -23.3F,
-                Unit = "*",
-                Time = DateTime.Now
-            });
-            AddViewModel(sensorHistoryVm);
+            //var sensorHistoryVm = GetViewModel<SensorHistoryVm>();
+            //sensorHistoryVm.Initialize(new SensorProjection
+            //{
+            //    Id = 4638,
+            //    Type = 1,
+            //    Name = "Температура",
+            //    Value = -23.3F,
+            //    Unit = "*",
+            //    Time = DateTime.Now
+            //});
+            //AddViewModel(sensorHistoryVm);
             AddViewModel(GetViewModel<CurrentWeatherVm>());
         }
         

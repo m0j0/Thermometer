@@ -35,7 +35,8 @@ namespace Thermometer.Infrastructure
                         Name = $"Датчик {j}",
                         Value = (random.NextDouble() - 0.5) * 50,
                         Unit = " гр",
-                        Time = DateTime.Now
+                        Time = DateTime.Now,
+                        IsPinned = (random.Next(5) % 2) == 1
                     });
                 }
 

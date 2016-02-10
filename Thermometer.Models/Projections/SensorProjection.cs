@@ -29,6 +29,8 @@ namespace Thermometer.Projections
 
         public DateTime Time { get; set; }
 
+        public bool IsPinned { get; set; }
+
         public IList<SensorHistoryData> Data { get; }
 
         #endregion

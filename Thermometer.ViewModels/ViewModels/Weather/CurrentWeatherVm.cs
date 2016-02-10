@@ -49,6 +49,8 @@ namespace Thermometer.ViewModels.Weather
             return projection != null;
         }
 
+        public ICommand ChangeSensorPinStatusCommand { get; }
+
         #endregion
 
         #region Properties
