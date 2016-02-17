@@ -10,15 +10,15 @@ namespace Thermometer.ViewModels.Weather
     {
         #region Fields
 
-        private readonly ICurrentLocationDataProvider _currentLocationDataProvider;
+        private readonly IWeatherForecastDataProvider _weatherForecastDataProvider;
 
         #endregion
 
         #region Constructors
 
-        public WeatherForecastVm(ICurrentLocationDataProvider currentLocationDataProvider)
+        public WeatherForecastVm(IWeatherForecastDataProvider weatherForecastDataProvider)
         {
-            _currentLocationDataProvider = currentLocationDataProvider;
+            _weatherForecastDataProvider = weatherForecastDataProvider;
         }
 
         #endregion
@@ -27,7 +27,7 @@ namespace Thermometer.ViewModels.Weather
 
         public string DisplayName { get; set; }
 
-        public LocationProjection Location { get; set; }
+        public string Location { get; set; }
 
         #endregion
 
@@ -38,7 +38,7 @@ namespace Thermometer.ViewModels.Weather
         {
             //DisplayName = date.ToString("M");
             DisplayName = DateTime.Now.ToString("M");
-            _currentLocationDataProvider.GetCurrentUserLocationAsync().ContinueWith(task => Location = task.Result).WithBusyIndicator(this);
+            _weatherForecastDataProvider.GetForecastByCityIdAsync(4475).ContinueWith(task => Location = task.Result).WithBusyIndicator(this);
         }
 
         #endregion

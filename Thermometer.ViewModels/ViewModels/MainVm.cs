@@ -60,7 +60,7 @@ namespace Thermometer.ViewModels
         {
             base.OnInitialized();
 
-            //AddViewModel(GetViewModel<WeatherForecastVm>());
+            AddViewModel(GetViewModel<WeatherForecastVm>());
             //AddViewModel(GetViewModel<WeatherForecastVm>());
 
             //var sensorHistoryVm = GetViewModel<SensorHistoryVm>();

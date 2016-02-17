@@ -39,12 +39,15 @@
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\FakeCurrentWeatherDataProvider.cs" />
     <Compile Include="Infrastructure\NarodMonWeatherDataProvider.cs" />
+    <Compile Include="Infrastructure\Rp5WeatherForecastDataProvider.cs" />
     <Compile Include="Interfaces\IApplicationSettings.cs" />
     <Compile Include="Interfaces\ICurrentLocationDataProvider.cs" />
     <Compile Include="Interfaces\ICurrentWeatherDataProvider.cs" />
     <Compile Include="Interfaces\IDisplayWrapperVm.cs" />
     <Compile Include="Interfaces\IEditorWrapperVm.cs" />
     <Compile Include="Interfaces\ISensorPinManager.cs" />
+    <Compile Include="Interfaces\IWeatherForecastDataProvider.cs" />
+    <Compile Include="JsonModels\Rp5WeatherForecast.cs" />
     <Compile Include="JsonModels\SensorsNearby.cs" />
     <Compile Include="JsonModels\SensorLog.cs" />
     <Compile Include="ModelExtensions.cs" />

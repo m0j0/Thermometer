@@ -27,7 +27,8 @@ namespace Thermometer.Modules
 #else
             IocContainer.Bind<ICurrentWeatherDataProvider, NarodMonWeatherDataProvider>(DependencyLifecycle.SingleInstance);
 #endif
-
+            IocContainer.Bind<IWeatherForecastDataProvider, Rp5WeatherForecastDataProvider>(DependencyLifecycle.SingleInstance);
+            
             return true;
         }
 

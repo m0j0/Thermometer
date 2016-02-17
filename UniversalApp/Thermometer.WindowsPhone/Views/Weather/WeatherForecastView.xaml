@@ -10,13 +10,14 @@
     mc:Ignorable="d" d:DataContext="{d:DesignInstance weather:WeatherForecastVm}"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-<TextBlock Grid.Row="0" Text="{Binding Location.Latitude}" />
-<TextBlock Grid.Row="1" Text="{Binding Location.Longitude}" />
+        <ScrollViewer>
+            <TextBlock Grid.Row="0" Text="{Binding Location}" TextWrapping="Wrap" />
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>
