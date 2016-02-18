@@ -66,7 +66,7 @@ namespace Thermometer.ViewModels.Weather
 
         #region Properties
 
-        public string DisplayName { get; set; } = "сейчас";
+        public string DisplayName { get; set; } = "Сейчас";
 
         public IList<DeviceProjection> Items { get; private set; }
 

@@ -22,11 +22,11 @@ namespace Thermometer.ViewModels.Weather
         {
             if (dateTime.Date == DateTime.Today)
             {
-                DisplayName = "сегодня";
+                DisplayName = "Сегодня";
             }
             else if (dateTime.Date == DateTime.Today.AddDays(1))
             {
-                DisplayName = "завтра";
+                DisplayName = "Завтра";
             }
             else
             {

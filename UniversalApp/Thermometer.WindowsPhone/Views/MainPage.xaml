@@ -8,6 +8,7 @@
     xmlns:viewModels="using:Thermometer.ViewModels"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Thermometer.Behaviors"
+    xmlns:markupExtensions="using:MugenMvvmToolkit.WinRT.MarkupExtensions"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{d:DesignInstance viewModels:MainVm}">
@@ -22,7 +23,7 @@
                SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" />
+                    <TextBlock markupExtensions:View.Bind="Text DisplayName.ToLower()" />
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.ItemTemplate>
