@@ -18,15 +18,6 @@ namespace Thermometer.JsonModels
         public int F { get; set; }
     }
 
-    internal class TemperatureSea
-    {
-        [JsonProperty("c")]
-        public int C { get; set; }
-
-        [JsonProperty("f")]
-        public int F { get; set; }
-    }
-
     internal class Pr
     {
         [JsonProperty("mm")]
@@ -34,6 +25,24 @@ namespace Thermometer.JsonModels
 
         [JsonProperty("inches")]
         public object Inches { get; set; }
+    }
+
+    internal class Count
+    {
+        [JsonProperty("mm")]
+        public double Mm { get; set; }
+
+        [JsonProperty("inches")]
+        public double Inches { get; set; }
+    }
+
+    internal class Precipitation
+    {
+        [JsonProperty("mm")]
+        public double Mm { get; set; }
+
+        [JsonProperty("inches")]
+        public int Inches { get; set; }
     }
 
     internal class Archive
@@ -45,7 +54,7 @@ namespace Thermometer.JsonModels
         public Temperature Temperature { get; set; }
 
         [JsonProperty("temperature_sea")]
-        public TemperatureSea TemperatureSea { get; set; }
+        public Temperature TemperatureSea { get; set; }
 
         [JsonProperty("wind_velocity")]
         public int WindVelocity { get; set; }
@@ -61,15 +70,6 @@ namespace Thermometer.JsonModels
 
         [JsonProperty("pr")]
         public Pr Pr { get; set; }
-    }
-
-    internal class FeelTemperature
-    {
-        [JsonProperty("c")]
-        public int C { get; set; }
-
-        [JsonProperty("f")]
-        public int F { get; set; }
     }
 
     internal class Pressure
@@ -141,7 +141,7 @@ namespace Thermometer.JsonModels
         public Temperature Temperature { get; set; }
 
         [JsonProperty("feel_temperature")]
-        public FeelTemperature FeelTemperature { get; set; }
+        public Temperature FeelTemperature { get; set; }
 
         [JsonProperty("humidity")]
         public int Humidity { get; set; }
@@ -252,15 +252,6 @@ namespace Thermometer.JsonModels
         public string Oktas { get; set; }
     }
 
-    internal class Count
-    {
-        [JsonProperty("mm")]
-        public double Mm { get; set; }
-
-        [JsonProperty("inches")]
-        public double Inches { get; set; }
-    }
-
     internal class Phenomenon
     {
         [JsonProperty("code")]
@@ -271,15 +262,6 @@ namespace Thermometer.JsonModels
 
         [JsonProperty("fraction")]
         public int Fraction { get; set; }
-    }
-
-    internal class Precipitation
-    {
-        [JsonProperty("mm")]
-        public double Mm { get; set; }
-
-        [JsonProperty("inches")]
-        public int Inches { get; set; }
     }
 
     internal class PrecipitationHint
@@ -321,7 +303,7 @@ namespace Thermometer.JsonModels
         public Temperature Temperature { get; set; }
 
         [JsonProperty("feel_temperature")]
-        public FeelTemperature FeelTemperature { get; set; }
+        public Temperature FeelTemperature { get; set; }
 
         [JsonProperty("humidity")]
         public int Humidity { get; set; }
