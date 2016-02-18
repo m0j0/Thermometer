@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ApplicationSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Md5AlgorithmProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SensorPinManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\UniversalAppCurrentLocationDataProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Modules\UniversalAppModule.cs" />

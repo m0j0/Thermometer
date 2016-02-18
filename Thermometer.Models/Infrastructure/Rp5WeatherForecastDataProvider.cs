@@ -1,46 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Thermometer.Interfaces;
 
 namespace Thermometer.Infrastructure
 {
     internal class Rp5WeatherForecastDataProvider : IWeatherForecastDataProvider
     {
+        #region Fields
+
+        private static readonly IFormatProvider EnUsCultureInfo = new CultureInfo("en-US");
+        private readonly IMd5AlgorithmProvider _md5AlgorithmProvider;
+
+        #endregion
+
+        #region Constructors
+
+        public Rp5WeatherForecastDataProvider(IMd5AlgorithmProvider md5AlgorithmProvider)
+        {
+            _md5AlgorithmProvider = md5AlgorithmProvider;
+        }
+
+        #endregion
+
+        #region Implementation of interface
+
         public async Task<string> GetForecastByCityIdAsync(int idCity)
         {
+            var str1 = EncodeBase64String(idCity.ToString());
+            var str2 = Rp5StringProcess(Rp5CityIdProcessMethod(idCity * 3.141D, 3).ToString(EnUsCultureInfo));
+            var str3 = Rp5StringProcess(_md5AlgorithmProvider.GetMd5Hash(str2));
+            var str4 = EncodeBase64String("ru");
+            var requestUri = $"http://rp5.ru/wduck/i.php?city={str2}&api={str1}&io={str3}&l={str4}";
+
             using (var httpClient = new HttpClient())
-            using (HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, "http://rp5.ru/"))
+            using (var httpResponse = await httpClient.GetAsync(requestUri))
             {
-                requestMessage.Headers.Add("headername", "header value");
-                var parameters = new Dictionary<string, string>();
-                parameters["city"] = "xQDM1UjL5cTN";
-                parameters["api"] = "NDQ3NQ";
-                parameters["io"] = "YTYiJmMkhDZhJGZkdzM1YDO1QWO5kDO5UTZyUGZjJDM";
-                parameters["l"] = "ZW4";
-                // /wduck/i.php?city=xQDM1UjL5cTN&api=NDQ3NQ&io=YTYiJmMkhDZhJGZkdzM1YDO1QWO5kDO5UTZyUGZjJDM&l=ZW4 
-                using (var httpResponse = await httpClient.GetAsync("http://rp5.ru/wduck/i.php?city=xQDM1UjL5cTN&api=NDQ3NQ&io=YTYiJmMkhDZhJGZkdzM1YDO1QWO5kDO5UTZyUGZjJDM&l=ZW4"))
-                {
-                    var response = await httpResponse.Content.ReadAsStringAsync();
-                  //  return JsonConvert.DeserializeObject<TResponse>(response);
+                var response = await httpResponse.Content.ReadAsStringAsync();
+                //  return JsonConvert.DeserializeObject<TResponse>(response);
 
-                    //if (httpResponse.Content != null)
-                    //{
-                    //    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
-                    //}
-
-                    return DecodeResponse(response);
-                }
+                return DecodeResponse(response);
             }
         }
 
+        #endregion
+
         #region Methods
 
-
-        private static double MagicMethod(double paramDouble, int paramInt)
+        private static double Rp5CityIdProcessMethod(double paramDouble, int paramInt)
         {
             int i = 10;
             for (int j = 1; j < paramInt;)
@@ -50,14 +60,14 @@ namespace Thermometer.Infrastructure
             }
             double d = i * paramDouble;
             paramDouble = d;
-            if (d - (int)d >= 0.5D)
+            if (d - (int) d >= 0.5D)
             {
                 paramDouble = d + 1.0D;
             }
             return paramDouble / i;
         }
 
-        private static String MagicMethod2(String paramString)
+        private static string Rp5StringProcess(string paramString)
         {
             StringBuilder sb = new StringBuilder();
             foreach (string str in SplitString(paramString, 512))
@@ -65,19 +75,6 @@ namespace Thermometer.Infrastructure
                 sb.Append(EncodeBase64String(ReverseString(str)));
             }
             return ReverseString(sb.ToString()).Replace("=", "").Trim();
-        }
-
-        private static string GetMd5Hash(string str)
-        {
-            return str;
-/*            byte[] encodedPassword = Encoding.UTF8.GetBytes(str);
-            var hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
-            StringBuilder sb = new StringBuilder();
-            for (int n = 0; n < hash.Length; n++)
-            {
-                sb.Append(hash[n].ToString("x2"));
-            }
-            return sb.ToString();*/
         }
 
         private static string DecodeResponse(string response)
@@ -123,6 +120,5 @@ namespace Thermometer.Infrastructure
         }
 
         #endregion
-
     }
 }
