@@ -58,6 +58,7 @@
     <Compile Include="Projections\DeviceProjection.cs" />
     <Compile Include="Projections\LocationProjection.cs" />
     <Compile Include="Projections\SensorProjection.cs" />
+    <Compile Include="Projections\WeatherForecastProjection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

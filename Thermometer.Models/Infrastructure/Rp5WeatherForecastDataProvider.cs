@@ -5,7 +5,10 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using MugenMvvmToolkit;
+using Newtonsoft.Json;
 using Thermometer.Interfaces;
+using Thermometer.JsonModels;
+using Thermometer.Projections;
 
 namespace Thermometer.Infrastructure
 {
@@ -30,7 +33,7 @@ namespace Thermometer.Infrastructure
 
         #region Implementation of interface
 
-        public async Task<string> GetForecastByCityIdAsync(int idCity)
+        public async Task<IList<WeatherForecastProjection>> GetForecastByCityIdAsync(int idCity)
         {
             var str1 = EncodeBase64String(idCity.ToString());
             var str2 = Rp5StringProcess(Rp5CityIdProcessMethod(idCity * 3.141D, 3).ToString(EnUsCultureInfo));
@@ -43,8 +46,8 @@ namespace Thermometer.Infrastructure
             {
                 var response = await httpResponse.Content.ReadAsStringAsync();
                 var decodedRespose = DecodeResponse(response);
-                //  return JsonConvert.DeserializeObject<TResponse>(response);
-                return decodedRespose;
+                var deserializedObject = JsonConvert.DeserializeObject<Rp5WeatherForecastRootObject>(response);
+                return ModelExtensions.ConvertToWeatherForecastProjections(deserializedObject);
             }
         }
 

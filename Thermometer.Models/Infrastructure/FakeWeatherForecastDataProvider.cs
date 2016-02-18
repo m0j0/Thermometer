@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Thermometer.Interfaces;
 using Thermometer.JsonModels;
+using Thermometer.Projections;
 
 namespace Thermometer.Infrastructure
 {
@@ -18,11 +20,13 @@ namespace Thermometer.Infrastructure
 
         #region Methods
 
-        public Task<string> GetForecastByCityIdAsync(int idCity)
+        public Task<IList<WeatherForecastProjection>> GetForecastByCityIdAsync(int idCity)
         {
             var deserializeObject = JsonConvert.DeserializeObject<Rp5WeatherForecastRootObject>(ResultEn);
 
-            return Task.FromResult(ResultEn);
+            var result = ModelExtensions.ConvertToWeatherForecastProjections(deserializeObject);
+
+            return Task.FromResult<IList<WeatherForecastProjection>>(result);
         }
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
@@ -29,6 +30,8 @@ namespace Thermometer.ViewModels.Weather
 
         public string Location { get; set; }
 
+        public IList<WeatherForecastProjection> Items { get; private set; }
+
         #endregion
 
         #region Methods
@@ -38,7 +41,7 @@ namespace Thermometer.ViewModels.Weather
         {
             //DisplayName = date.ToString("M");
             DisplayName = DateTime.Now.ToString("M");
-            _weatherForecastDataProvider.GetForecastByCityIdAsync(4475).ContinueWith(task => Location = task.Result).WithBusyIndicator(this);
+            _weatherForecastDataProvider.GetForecastByCityIdAsync(4475).ContinueWith(task => Items = task.Result).WithBusyIndicator(this);
         }
 
         #endregion

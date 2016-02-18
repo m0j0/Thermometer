@@ -42,6 +42,25 @@ namespace Thermometer
             return result;
         }
 
+        internal static List<WeatherForecastProjection> ConvertToWeatherForecastProjections(Rp5WeatherForecastRootObject deserializeObject)
+        {
+            var result = new List<WeatherForecastProjection>();
+            foreach (var forecastItems in deserializeObject.Response.Forecast.Items)
+            {
+                foreach (var forecastItem in forecastItems)
+                {
+                    result.Add(new WeatherForecastProjection
+                    {
+                        ForecastDateTime = UnixTimeStampToDateTime(forecastItem.Gmt),
+                        Temperature = forecastItem.Temperature.C,
+                        FeelTemperature = forecastItem.FeelTemperature.C,
+                        Cloudiness = forecastItem.CloudCover.Pct
+                    });
+                }
+            }
+            return result;
+        }
+
         #endregion
 
         #region Public methods

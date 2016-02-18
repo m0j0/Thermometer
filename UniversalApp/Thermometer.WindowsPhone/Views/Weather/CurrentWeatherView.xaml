@@ -19,11 +19,6 @@
         </Style>
     </UserControl.Resources>
 
-    <interactivity:Interaction.Behaviors>
-        <behaviors:ProgressBehavior IsVisible="{Binding Path=IsBusy}"
-                                    Text="{Binding Path=BusyMessage}" />
-    </interactivity:Interaction.Behaviors>
-
     <ListView ItemsSource="{Binding Items}">
         <ListView.ItemTemplate>
             <DataTemplate>
