@@ -1,10 +1,9 @@
-using System;
+using System.Linq;
 using System.Windows.Input;
 using MugenMvvmToolkit;
 using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
 using Thermometer.Interfaces;
-using Thermometer.Projections;
 using Thermometer.ViewModels.Common;
 using Thermometer.ViewModels.Weather;
 
@@ -15,15 +14,19 @@ namespace Thermometer.ViewModels
         #region Fields
 
         private readonly IApplicationSettings _applicationSettings;
+        private readonly IWeatherForecastDataProvider _weatherForecastDataProvider;
 
         #endregion
 
         #region Constructors
 
-        public MainVm(IApplicationSettings applicationSettings)
+        public MainVm(IApplicationSettings applicationSettings, IWeatherForecastDataProvider weatherForecastDataProvider)
         {
             _applicationSettings = applicationSettings;
+            _weatherForecastDataProvider = weatherForecastDataProvider;
+
             OpenSettingsCommand = new RelayCommand(OpenSettings);
+            RefreshCommand = new RelayCommand(Refresh);
         }
 
         #endregion
@@ -48,6 +51,12 @@ namespace Thermometer.ViewModels
             }
         }
 
+        public ICommand RefreshCommand { get; }
+
+        private async void Refresh()
+        {
+        }
+
         #endregion
 
         #region Properties
@@ -56,27 +65,25 @@ namespace Thermometer.ViewModels
 
         #region Methods
 
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
             base.OnInitialized();
 
-            AddViewModel(GetViewModel<WeatherForecastVm>());
-            //AddViewModel(GetViewModel<WeatherForecastVm>());
-
-            //var sensorHistoryVm = GetViewModel<SensorHistoryVm>();
-            //sensorHistoryVm.Initialize(new SensorProjection
-            //{
-            //    Id = 4638,
-            //    Type = 1,
-            //    Name = "Температура",
-            //    Value = -23.3F,
-            //    Unit = "*",
-            //    Time = DateTime.Now
-            //});
-            //AddViewModel(sensorHistoryVm);
             AddViewModel(GetViewModel<CurrentWeatherVm>());
+
+            var forecastItems = await _weatherForecastDataProvider.GetForecastByCityIdAsync(4475).WithBusyIndicator(this);
+
+            var groups = forecastItems.GroupBy(projection => projection.ForecastDateTime.Date)
+                .ToDictionary(grouping => grouping.Key, grouping => grouping.ToArray());
+
+            foreach (var group in groups)
+            {
+                var weatherForecastVm = GetViewModel<WeatherForecastVm>();
+                weatherForecastVm.Initialize(group.Key, group.Value);
+                AddViewModel(weatherForecastVm, false);
+            }
         }
-        
+
         #endregion
     }
 }

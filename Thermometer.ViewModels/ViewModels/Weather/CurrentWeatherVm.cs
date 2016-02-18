@@ -25,8 +25,6 @@ namespace Thermometer.ViewModels.Weather
             _currentWeatherDataProvider = currentWeatherDataProvider;
             _sensorPinManager = sensorPinManager;
 
-            _currentWeatherDataProvider.GetDevicesAsync().ContinueWith(task => Items = task.Result).WithBusyIndicator(this);
-
             ShowSensorCommand = new RelayCommand<SensorProjection>(ShowSensor, CanShowSensor, this);
             ChangeSensorPinStatusCommand = new RelayCommand<SensorProjection>(ChangeSensorPinStatus, CanChangeSensorPinStatus, this);
         }
@@ -68,11 +66,20 @@ namespace Thermometer.ViewModels.Weather
 
         #region Properties
 
-        public string Text { get; set; } = "Hello MugenMvvmToolkit 1";
-
-        public string DisplayName { get; set; } = "Сейчас";
+        public string DisplayName { get; set; } = "сейчас";
 
         public IList<DeviceProjection> Items { get; private set; }
+
+        #endregion
+
+        #region Methods
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            _currentWeatherDataProvider.GetDevicesAsync().ContinueWith(task => Items = task.Result).WithBusyIndicator(this);
+        }
 
         #endregion
     }

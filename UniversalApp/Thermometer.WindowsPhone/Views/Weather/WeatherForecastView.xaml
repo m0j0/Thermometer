@@ -16,50 +16,44 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <ListView ItemsSource="{Binding Items}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Border BorderThickness="1" BorderBrush="Aqua" Margin="4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-        <ListView ItemsSource="{Binding Items}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="Aqua">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Row="0" Grid.Column="0"
+                        <TextBlock Grid.Row="0" Grid.Column="0"
                                    Text="Время:" />
-                            <TextBlock Grid.Row="0" Grid.Column="1"
+                        <TextBlock Grid.Row="0" Grid.Column="1"
                                    Text="{Binding ForecastDateTime}" />
-                            
-                            <TextBlock Grid.Row="1" Grid.Column="0"
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
                                    Text="Температура:" />
-                            <TextBlock Grid.Row="1" Grid.Column="1"
+                        <TextBlock Grid.Row="1" Grid.Column="1"
                                    Text="{Binding Temperature}" />
-                            
-                            <TextBlock Grid.Row="2" Grid.Column="0"
+
+                        <TextBlock Grid.Row="2" Grid.Column="0"
                                    Text="Ощущается как:" />
-                            <TextBlock Grid.Row="2" Grid.Column="1"
+                        <TextBlock Grid.Row="2" Grid.Column="1"
                                    Text="{Binding FeelTemperature}" />
-                            
-                            <TextBlock Grid.Row="3" Grid.Column="0"
+
+                        <TextBlock Grid.Row="3" Grid.Column="0"
                                    Text="Облачность:" />
-                            <TextBlock Grid.Row="3" Grid.Column="1"
+                        <TextBlock Grid.Row="3" Grid.Column="1"
                                    Text="{Binding Cloudiness}" />
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </UserControl>

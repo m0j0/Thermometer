@@ -36,7 +36,8 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Setting" Label="Настройки" Command="{Binding Path=OpenSettingsCommand}" />
+                <AppBarButton Icon="Refresh" Label="обновить" Command="{Binding Path=RefreshCommand}" />
+                <AppBarButton Icon="Setting" Label="настройки" Command="{Binding Path=OpenSettingsCommand}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
