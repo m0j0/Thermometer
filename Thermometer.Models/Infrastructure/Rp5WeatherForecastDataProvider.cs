@@ -33,16 +33,16 @@ namespace Thermometer.Infrastructure
             var str1 = EncodeBase64String(idCity.ToString());
             var str2 = Rp5StringProcess(Rp5CityIdProcessMethod(idCity * 3.141D, 3).ToString(EnUsCultureInfo));
             var str3 = Rp5StringProcess(_md5AlgorithmProvider.GetMd5Hash(str2));
-            var str4 = EncodeBase64String("ru");
+            var str4 = EncodeBase64String("en");
             var requestUri = $"http://rp5.ru/wduck/i.php?city={str2}&api={str1}&io={str3}&l={str4}";
 
             using (var httpClient = new HttpClient())
             using (var httpResponse = await httpClient.GetAsync(requestUri))
             {
                 var response = await httpResponse.Content.ReadAsStringAsync();
+                var decodedRespose = DecodeResponse(response);
                 //  return JsonConvert.DeserializeObject<TResponse>(response);
-
-                return DecodeResponse(response);
+                return decodedRespose;
             }
         }
 

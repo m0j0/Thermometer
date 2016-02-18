@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\FakeCurrentWeatherDataProvider.cs" />
+    <Compile Include="Infrastructure\FakeWeatherForecastDataProvider.cs" />
     <Compile Include="Infrastructure\NarodMonWeatherDataProvider.cs" />
     <Compile Include="Infrastructure\Rp5WeatherForecastDataProvider.cs" />
     <Compile Include="Interfaces\IApplicationSettings.cs" />

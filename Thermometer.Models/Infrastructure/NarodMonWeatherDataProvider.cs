@@ -53,34 +53,7 @@ namespace Thermometer.Infrastructure
                 Lang = "ru"
             };
             var response = await Send<SensorsNearbyResponse>(sensors);
-
-            var result = new List<DeviceProjection>();
-            foreach (var device in response.Devices)
-            {
-                var projection = new DeviceProjection
-                {
-                    Id = device.Id,
-                    Name = device.Name,
-                    Location = device.Location,
-                    Distance = device.Distance,
-                    Latitude = device.Lat,
-                    Longitude = device.Lng,
-                    Sensors =
-                        device.Sensors.Select(
-                            sensor =>
-                                new SensorProjection
-                                {
-                                    Id = sensor.Id,
-                                    Type = sensor.Type,
-                                    Name = sensor.Name,
-                                    Value = sensor.Value,
-                                    Unit = sensor.Unit,
-                                    Time = ModelExtensions.UnixTimeStampToDateTime(sensor.Time)
-                                }).ToList()
-                };
-                result.Add(projection);
-            }
-            return result;
+            return ModelExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response);
         }
 
         public async Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)
