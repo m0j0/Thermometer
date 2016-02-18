@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using MugenMvvmToolkit;
 using Thermometer.Interfaces;
 
 namespace Thermometer.Infrastructure
@@ -21,6 +22,7 @@ namespace Thermometer.Infrastructure
 
         public Rp5WeatherForecastDataProvider(IMd5AlgorithmProvider md5AlgorithmProvider)
         {
+            Should.NotBeNull(md5AlgorithmProvider, nameof(md5AlgorithmProvider));
             _md5AlgorithmProvider = md5AlgorithmProvider;
         }
 
@@ -33,7 +35,7 @@ namespace Thermometer.Infrastructure
             var str1 = EncodeBase64String(idCity.ToString());
             var str2 = Rp5StringProcess(Rp5CityIdProcessMethod(idCity * 3.141D, 3).ToString(EnUsCultureInfo));
             var str3 = Rp5StringProcess(_md5AlgorithmProvider.GetMd5Hash(str2));
-            var str4 = EncodeBase64String("en");
+            var str4 = EncodeBase64String("ru");
             var requestUri = $"http://rp5.ru/wduck/i.php?city={str2}&api={str1}&io={str3}&l={str4}";
 
             using (var httpClient = new HttpClient())
