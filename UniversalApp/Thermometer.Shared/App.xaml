@@ -5,6 +5,10 @@
     xmlns:local="using:Thermometer"
     xmlns:converters="using:MugenMvvmToolkit.WinRT.Binding.Converters">
     <Application.Resources>
-        <converters:ViewModelToViewConverter x:Key="ViewModelToViewConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Converters.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

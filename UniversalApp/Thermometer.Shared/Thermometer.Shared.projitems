@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\Rp5ForecastCloudCoverIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ApplicationSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Md5AlgorithmProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SensorPinManager.cs" />
@@ -133,5 +134,11 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\square310x310Tile-sdk.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\square70x70Tile-sdk.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\squareTileLogoUpdate-sdk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Resources\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>
