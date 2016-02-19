@@ -1,5 +1,6 @@
 ﻿using System;
 using MugenMvvmToolkit.Models;
+using Thermometer.Infrastructure;
 
 namespace Thermometer.Projections
 {
@@ -12,5 +13,9 @@ namespace Thermometer.Projections
         public double FeelTemperature { get; set; }
 
         public int Cloudiness { get; set; }
+
+        public Rp5WindDirectionForecast WindDirection { get; set; }
+
+        public Rp5ForecastCloudCoverIcon CloudCoverIcon { get; set; }
     }
 }

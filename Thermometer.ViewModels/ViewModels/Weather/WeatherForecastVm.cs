@@ -30,7 +30,7 @@ namespace Thermometer.ViewModels.Weather
             }
             else
             {
-                DisplayName = dateTime.ToString("M");
+                DisplayName = dateTime.ToString("dddd");
             }
             
             Items = forecastItems;

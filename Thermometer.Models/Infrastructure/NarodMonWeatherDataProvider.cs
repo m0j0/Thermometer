@@ -68,7 +68,7 @@ namespace Thermometer.Infrastructure
 
             foreach (var responseData in response.Data)
             {
-                sensor.Data.Add(new SensorHistoryData(ModelExtensions.UnixTimeStampToDateTime(responseData.Time), responseData.Value));
+                sensor.Data.Add(new SensorHistoryData(ModelExtensions.UnixTimeStampToDateTime(responseData.Time, true), responseData.Value));
             }
         }
 

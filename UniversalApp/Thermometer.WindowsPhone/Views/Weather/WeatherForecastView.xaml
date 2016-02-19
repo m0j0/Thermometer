@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:Thermometer.ViewModels"
     xmlns:weather="using:Thermometer.ViewModels.Weather"
+    xmlns:markupExtensions="using:MugenMvvmToolkit.WinRT.MarkupExtensions"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance weather:WeatherForecastVm}"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -22,6 +23,7 @@
                 <Border BorderThickness="1" BorderBrush="Aqua" Margin="4">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -51,6 +53,11 @@
                                    Text="Облачность:" />
                         <TextBlock Grid.Row="3" Grid.Column="1"
                                    Text="{Binding Cloudiness}" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+                                   Text="Направление ветра:" />
+                        <TextBlock Grid.Row="4" Grid.Column="1"
+                                   markupExtensions:View.Bind="Text WindDirection.ToText()" />
                     </Grid>
                 </Border>
             </DataTemplate>
