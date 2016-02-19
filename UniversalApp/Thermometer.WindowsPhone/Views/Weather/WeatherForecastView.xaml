@@ -33,6 +33,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="3*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0"
@@ -60,10 +61,13 @@
                         <TextBlock Grid.Row="4" Grid.Column="1"
                                    markupExtensions:View.Bind="Text WindDirection.ToText()" />
 
-                        <Image Grid.Column="2" 
-                               Grid.Row="0" Grid.RowSpan="5" 
-                               Source="{Binding CloudCoverIcon, Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}"
-                               />
+                        <Image Grid.Column="2"
+                               Grid.Row="0" Grid.RowSpan="5"
+                               Source="{Binding CloudCoverIcon, Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}" />
+                        
+                        <Image Grid.Column="3"
+                               Grid.Row="0" Grid.RowSpan="5"
+                               Source="{Binding WindDirection, Converter={StaticResource Rp5WindDirectionForecastIconConverter}}" />
                     </Grid>
                 </Border>
             </DataTemplate>

@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="using:Thermometer.Converters"
     xmlns:converters1="using:MugenMvvmToolkit.WinRT.Binding.Converters">
+    
     <converters1:ViewModelToViewConverter x:Key="ViewModelToViewConverter" />
     <converters:Rp5ForecastCloudCoverIconConverter x:Key="Rp5ForecastCloudCoverIconConverter"/>
+    <converters:Rp5WindDirectionForecastIconConverter x:Key="Rp5WindDirectionForecastIconConverter"/>
 </ResourceDictionary>

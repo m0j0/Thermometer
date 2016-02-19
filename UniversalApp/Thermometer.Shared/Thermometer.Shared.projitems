@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Rp5ForecastCloudCoverIconConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\Rp5WindDirectionForecastIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ApplicationSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Md5AlgorithmProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SensorPinManager.cs" />
