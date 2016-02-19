@@ -12,6 +12,8 @@ namespace Thermometer.Projections
 
         public double FeelTemperature { get; set; }
 
+        public int WindSpeed { get; set; }
+
         public int Cloudiness { get; set; }
 
         public Rp5WindDirectionForecast WindDirection { get; set; }

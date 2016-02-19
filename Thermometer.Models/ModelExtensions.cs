@@ -58,6 +58,7 @@ namespace Thermometer
                         Temperature = forecastItem.Temperature.C,
                         FeelTemperature = forecastItem.FeelTemperature.C,
                         Cloudiness = forecastItem.CloudCover.Pct,
+                        WindSpeed = forecastItem.WindVelocity.Ms,
                         WindDirection = (Rp5WindDirectionForecast) forecastItem.WindDirection,
                         CloudCoverIcon = GetRp5ForecastCloudCoverIcon(forecastItem.CloudCover.Pct, (forecastDateTime > sunrise) && (forecastDateTime < sunset)),
                         PrecipitationIcon = GetRp5Rp5PrecipitationIcon(forecastItem.Precipitation.Mm, forecastItem.PrecipitationType),

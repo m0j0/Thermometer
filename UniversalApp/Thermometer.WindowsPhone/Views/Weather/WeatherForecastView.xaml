@@ -33,8 +33,6 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="3*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0"
@@ -58,21 +56,23 @@
                                    Text="{Binding Cloudiness}" />
 
                         <TextBlock Grid.Row="4" Grid.Column="0"
-                                   Text="Направление ветра:" />
+                                   Text="Ветер:" />
                         <TextBlock Grid.Row="4" Grid.Column="1"
-                                   markupExtensions:View.Bind="Text WindDirection.ToText()" />
+                                   markupExtensions:View.Bind="Text $'{WindSpeed} м/с, {WindDirection.ToText()}'" />
 
-                        <Image Grid.Column="2"
-                               Grid.Row="0" Grid.RowSpan="5"
-                               Source="{Binding CloudCoverIcon, Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}" />
+                        <StackPanel Grid.Column="2"
+                                    Grid.Row="0" Grid.RowSpan="5">
+                            <Image
+                                Source="{Binding CloudCoverIcon, Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}" />
 
-                        <Image Grid.Column="3"
+                            <Image
+                                Source="{Binding PrecipitationIcon, Converter={StaticResource Rp5PrecipitationIconConverter}}" />
+                        </StackPanel>
+                      
+                        <!--<Image Grid.Column="3"
                                Grid.Row="0" Grid.RowSpan="5"
-                               Source="{Binding WindDirection, Converter={StaticResource Rp5WindDirectionForecastIconConverter}}" />
+                               Source="{Binding WindDirection, Converter={StaticResource Rp5WindDirectionForecastIconConverter}}" />-->
                         
-                        <Image Grid.Column="4"
-                               Grid.Row="0" Grid.RowSpan="5"
-                               Source="{Binding PrecipitationIcon, Converter={StaticResource Rp5PrecipitationIconConverter}}" />
                     </Grid>
                 </Border>
             </DataTemplate>
