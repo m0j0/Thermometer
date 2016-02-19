@@ -64,7 +64,7 @@
                         <Image Grid.Column="2"
                                Grid.Row="0" Grid.RowSpan="5"
                                Source="{Binding CloudCoverIcon, Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}" />
-                        
+
                         <Image Grid.Column="3"
                                Grid.Row="0" Grid.RowSpan="5"
                                Source="{Binding WindDirection, Converter={StaticResource Rp5WindDirectionForecastIconConverter}}" />

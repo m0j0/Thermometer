@@ -50,6 +50,8 @@ namespace Thermometer
                 foreach (var forecastItem in forecastItems)
                 {
                     var forecastDateTime = UnixTimeStampToDateTime(forecastItem.Gmt, false);
+                    var sunrise = UnixTimeStampToDateTime(forecastItem.Sunrise, false);
+                    var sunset = UnixTimeStampToDateTime(forecastItem.Sunset, false);
                     result.Add(new WeatherForecastProjection
                     {
                         ForecastDateTime = forecastDateTime,
@@ -57,7 +59,9 @@ namespace Thermometer
                         FeelTemperature = forecastItem.FeelTemperature.C,
                         Cloudiness = forecastItem.CloudCover.Pct,
                         WindDirection = (Rp5WindDirectionForecast) forecastItem.WindDirection,
-                        CloudCoverIcon = GetRp5ForecastCloudCoverIcon(forecastItem.CloudCover.Pct, (forecastDateTime.Hour >= 7) && (forecastDateTime.Hour < 19))
+                        CloudCoverIcon = GetRp5ForecastCloudCoverIcon(forecastItem.CloudCover.Pct, (forecastDateTime > sunrise) && (forecastDateTime < sunset)),
+                        Sunrise = sunrise,
+                        Sunset = sunset
                     });
                 }
             }
@@ -68,10 +72,10 @@ namespace Thermometer
 
         #region Public methods
 
-        public static DateTime UnixTimeStampToDateTime(int unixTimeStamp, bool toLocalTime)
+        public static DateTime UnixTimeStampToDateTime(int unixTimeStamp, bool convertToLocalTime)
         {
             var dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixTimeStamp);
-            return toLocalTime ? dtDateTime.ToLocalTime() : dtDateTime;
+            return convertToLocalTime ? dtDateTime.ToLocalTime() : dtDateTime;
         }
 
         public static string ToText(this SensorHistoryPeriod period)
