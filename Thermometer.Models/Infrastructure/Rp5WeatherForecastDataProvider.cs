@@ -46,7 +46,7 @@ namespace Thermometer.Infrastructure
             {
                 var response = await httpResponse.Content.ReadAsStringAsync();
                 var decodedRespose = DecodeResponse(response);
-                var deserializedObject = JsonConvert.DeserializeObject<Rp5WeatherForecastRootObject>(response);
+                var deserializedObject = JsonConvert.DeserializeObject<Rp5WeatherForecastRootObject>(decodedRespose);
                 return ModelExtensions.ConvertToWeatherForecastProjections(deserializedObject);
             }
         }
