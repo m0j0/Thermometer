@@ -68,4 +68,24 @@
         NightIcon7 = 17,
         NightIcon8 = 18
     }
+
+    public enum Rp5PrecipitationIcon
+    {
+        NoPrecipation = 0,
+        Rain1 = 11,
+        Rain2 = 12,
+        Rain3 = 13,
+        Rain4 = 14,
+        Rain5 = 15,
+        RainAndSnow1 = 21,
+        RainAndSnow2 = 22,
+        RainAndSnow3 = 23,
+        RainAndSnow4 = 24,
+        RainAndSnow5 = 25,
+        Snow1 = 31,
+        Snow2 = 32,
+        Snow3 = 33,
+        Snow4 = 34,
+        Snow5 = 35
+    }
 }

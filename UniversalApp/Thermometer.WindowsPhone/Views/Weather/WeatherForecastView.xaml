@@ -34,6 +34,7 @@
                             <ColumnDefinition Width="3*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0"
@@ -68,6 +69,10 @@
                         <Image Grid.Column="3"
                                Grid.Row="0" Grid.RowSpan="5"
                                Source="{Binding WindDirection, Converter={StaticResource Rp5WindDirectionForecastIconConverter}}" />
+                        
+                        <Image Grid.Column="4"
+                               Grid.Row="0" Grid.RowSpan="5"
+                               Source="{Binding PrecipitationIcon, Converter={StaticResource Rp5PrecipitationIconConverter}}" />
                     </Grid>
                 </Border>
             </DataTemplate>

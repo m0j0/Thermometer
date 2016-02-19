@@ -17,7 +17,9 @@ namespace Thermometer.Projections
         public Rp5WindDirectionForecast WindDirection { get; set; }
 
         public Rp5ForecastCloudCoverIcon CloudCoverIcon { get; set; }
-        
+
+        public Rp5PrecipitationIcon PrecipitationIcon { get; set; }
+
         public DateTime Sunrise { get; set; }
 
         public DateTime Sunset { get; set; }

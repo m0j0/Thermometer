@@ -60,6 +60,7 @@ namespace Thermometer
                         Cloudiness = forecastItem.CloudCover.Pct,
                         WindDirection = (Rp5WindDirectionForecast) forecastItem.WindDirection,
                         CloudCoverIcon = GetRp5ForecastCloudCoverIcon(forecastItem.CloudCover.Pct, (forecastDateTime > sunrise) && (forecastDateTime < sunset)),
+                        PrecipitationIcon = GetRp5Rp5PrecipitationIcon(forecastItem.Precipitation.Mm, forecastItem.PrecipitationType),
                         Sunrise = sunrise,
                         Sunset = sunset
                     });
@@ -151,6 +152,32 @@ namespace Thermometer
                 return isDay ? Rp5ForecastCloudCoverIcon.DayIcon2 : Rp5ForecastCloudCoverIcon.NightIcon2;
             }
             return isDay ? Rp5ForecastCloudCoverIcon.DayIcon1 : Rp5ForecastCloudCoverIcon.NightIcon1;
+        }
+
+        private static Rp5PrecipitationIcon GetRp5Rp5PrecipitationIcon(double paramDouble, int precipitationType)
+        {
+            int i = 0;
+            if (paramDouble >= 24.8D)
+            {
+                i = precipitationType * 10 + 5;
+            }
+            if (paramDouble >= 6.1D)
+            {
+                i = precipitationType * 10 + 4;
+            }
+            else if (paramDouble >= 3.1D)
+            {
+                i = precipitationType * 10 + 3;
+            }
+            else if (paramDouble >= 1.1D)
+            {
+                i = precipitationType * 10 + 2;
+            }
+            else if (paramDouble > 0.0D)
+            {
+                i = precipitationType * 10 + 1;
+            }
+            return (Rp5PrecipitationIcon)i;
         }
 
         #endregion

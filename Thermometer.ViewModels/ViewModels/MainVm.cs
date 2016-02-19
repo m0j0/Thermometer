@@ -71,6 +71,7 @@ namespace Thermometer.ViewModels
 
             AddViewModel(GetViewModel<CurrentWeatherVm>());
 
+            // 257885 - Ќью-…орк
             var forecastItems = await _weatherForecastDataProvider.GetForecastByCityIdAsync(4475).WithBusyIndicator(this);
 
             var groups = forecastItems.GroupBy(projection => projection.ForecastDateTime.Date)

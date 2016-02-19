@@ -7,4 +7,5 @@
     <converters1:ViewModelToViewConverter x:Key="ViewModelToViewConverter" />
     <converters:Rp5ForecastCloudCoverIconConverter x:Key="Rp5ForecastCloudCoverIconConverter"/>
     <converters:Rp5WindDirectionForecastIconConverter x:Key="Rp5WindDirectionForecastIconConverter"/>
+    <converters:Rp5PrecipitationIconConverter x:Key="Rp5PrecipitationIconConverter"/>
 </ResourceDictionary>
