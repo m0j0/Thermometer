@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Thermometer.Extensions;
 using Thermometer.Interfaces;
 using Thermometer.JsonModels;
 using Thermometer.Projections;
@@ -53,7 +54,7 @@ namespace Thermometer.Infrastructure
                 Lang = "ru"
             };
             var response = await Send<SensorsNearbyResponse>(sensors);
-            return ModelExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response);
+            return NarodMonExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response);
         }
 
         public async Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)

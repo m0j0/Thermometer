@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:Thermometer.ViewModels"
-    xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:weather="using:Thermometer.ViewModels.Weather"
+    xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance weather:SensorHistoryVm}"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -30,18 +30,23 @@
                   SelectedValue="{Binding SelectedPeriodType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectedValuePath="Item1" DisplayMemberPath="Item2" />
 
-        <!--https://github.com/xyzzer/WinRTXamlToolkit/blob/master/WinRTXamlToolkit.Sample.UWP/Views/Controls/ChartTestView.xaml-->
-        <charting:Chart Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                        Title="{Binding Sensor.Name}">
-            <charting:Chart.Series>
-                <charting:LineSeries
-                    Title="Population"
-                    ItemsSource="{Binding Items}"
-                    IndependentValueBinding="{Binding Time}"
-                    DependentValueBinding="{Binding Value}"
-                    IsSelectionEnabled="True" />
-            </charting:Chart.Series>
-        </charting:Chart>
+        <chart:RadCartesianChart 
+            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <chart:RadCartesianChart.VerticalAxis>
+                <chart:LinearAxis/>
+            </chart:RadCartesianChart.VerticalAxis>
+            <chart:RadCartesianChart.HorizontalAxis>
+                <chart:CategoricalAxis/>
+            </chart:RadCartesianChart.HorizontalAxis>
 
+            <chart:LineSeries ItemsSource="{Binding Items}">
+                <chart:LineSeries.CategoryBinding>
+                    <chart:PropertyNameDataPointBinding  PropertyName="Time"/>
+                </chart:LineSeries.CategoryBinding>
+                <chart:LineSeries.ValueBinding>
+                    <chart:PropertyNameDataPointBinding PropertyName="Value"/>
+                </chart:LineSeries.ValueBinding>
+            </chart:LineSeries>
+        </chart:RadCartesianChart>
     </Grid>
 </UserControl>

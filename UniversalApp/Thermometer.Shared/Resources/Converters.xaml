@@ -8,4 +8,10 @@
     <converters:Rp5ForecastCloudCoverIconConverter x:Key="Rp5ForecastCloudCoverIconConverter"/>
     <converters:Rp5WindDirectionForecastIconConverter x:Key="Rp5WindDirectionForecastIconConverter"/>
     <converters:Rp5PrecipitationIconConverter x:Key="Rp5PrecipitationIconConverter"/>
+    <converters:CloudinessTextConverter x:Key="CloudinessTextConverter"/>
+    <converters:DateTimeToShortTimeConverter x:Key="DateTimeToShortTimeConverter"/>
+    <converters:PrecipitationTextConverter x:Key="PrecipitationTextConverter"/>
+    <converters:PressureTextConverter x:Key="PressureTextConverter"/>
+    <converters:TemperatureTextConverter x:Key="TemperatureTextConverter"/>
+    <converters:WindTextConverter x:Key="WindTextConverter"/>
 </ResourceDictionary>

@@ -38,39 +38,38 @@
                         <TextBlock Grid.Row="0" Grid.Column="0"
                                    Text="Время:" />
                         <TextBlock Grid.Row="0" Grid.Column="1"
-                                   Text="{Binding ForecastDateTime}" />
+                                   Text="{Binding ForecastDateTime, Converter={StaticResource DateTimeToShortTimeConverter}}" />
 
                         <TextBlock Grid.Row="1" Grid.Column="0"
                                    Text="Температура:" />
                         <TextBlock Grid.Row="1" Grid.Column="1"
-                                   Text="{Binding Temperature}" />
+                                   Text="{Binding Temperature, Converter={StaticResource TemperatureTextConverter}}" />
 
                         <TextBlock Grid.Row="2" Grid.Column="0"
                                    Text="Ощущается как:" />
                         <TextBlock Grid.Row="2" Grid.Column="1"
-                                   Text="{Binding FeelTemperature}" />
+                                   Text="{Binding FeelTemperature, Converter={StaticResource TemperatureTextConverter}}" />
 
                         <TextBlock Grid.Row="3" Grid.Column="0"
                                    Text="Облачность:" />
                         <TextBlock Grid.Row="3" Grid.Column="1"
-                                   Text="{Binding Cloudiness}" />
+                                   Text="{Binding Cloudiness, Converter={StaticResource CloudinessTextConverter}}" />
 
                         <TextBlock Grid.Row="4" Grid.Column="0"
                                    Text="Ветер:" />
                         <TextBlock Grid.Row="4" Grid.Column="1"
-                                   markupExtensions:View.Bind="Text $'{WindSpeed} м/с, {WindDirection.ToText()}'" />
+                                   Text="{Binding Converter={StaticResource WindTextConverter}}" />
 
                         <StackPanel Grid.Column="2"
                                     Grid.Row="0" Grid.RowSpan="5">
                             <Image
-                                Source="{Binding CloudCoverIcon, Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}" />
+                                Source="{Binding Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}" />
 
                             <Image
-                                Source="{Binding PrecipitationIcon, Converter={StaticResource Rp5PrecipitationIconConverter}}" />
+                                Source="{Binding Converter={StaticResource Rp5PrecipitationIconConverter}}" />
                         </StackPanel>
                       
-                        <!--<Image Grid.Column="3"
-                               Grid.Row="0" Grid.RowSpan="5"
+                        <!--<Image 
                                Source="{Binding WindDirection, Converter={StaticResource Rp5WindDirectionForecastIconConverter}}" />-->
                         
                     </Grid>

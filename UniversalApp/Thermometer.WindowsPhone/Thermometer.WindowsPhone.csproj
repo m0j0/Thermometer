@@ -172,6 +172,18 @@
       <HintPath>..\..\packages\MugenMvvmToolkit.Binding.5.1.0\lib\portable-win81+wpa81\MugenMvvmToolkit.WinRT.Binding.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.Core">
+      <HintPath>..\..\Libs\Telerik UI for Windows Universal\Common\Telerik.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Data">
+      <HintPath>..\..\Libs\Telerik UI for Windows Universal\Common\Telerik.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Chart">
+      <HintPath>..\..\Libs\Telerik UI for Windows Universal\Windows Phone 8.1\Telerik.UI.Xaml.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Primitives">
+      <HintPath>..\..\Libs\Telerik UI for Windows Universal\Windows Phone 8.1\Telerik.UI.Xaml.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="WinRTXamlToolkit, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.dll</HintPath>
       <Private>True</Private>

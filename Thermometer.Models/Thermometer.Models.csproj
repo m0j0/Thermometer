@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ModelExtensions.cs" />
+    <Compile Include="Extensions\NarodMonExtensions.cs" />
+    <Compile Include="Extensions\Rp5Extensions.cs" />
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\FakeCurrentWeatherDataProvider.cs" />
     <Compile Include="Infrastructure\FakeWeatherForecastDataProvider.cs" />
@@ -52,7 +55,6 @@
     <Compile Include="JsonModels\Rp5WeatherForecast.cs" />
     <Compile Include="JsonModels\SensorsNearby.cs" />
     <Compile Include="JsonModels\SensorLog.cs" />
-    <Compile Include="ModelExtensions.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Modules\ModelModule.cs" />
     <Compile Include="Projections\DeviceProjection.cs" />

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MugenMvvmToolkit;
 using Newtonsoft.Json;
+using Thermometer.Extensions;
 using Thermometer.Interfaces;
 using Thermometer.JsonModels;
 using Thermometer.Projections;
@@ -47,7 +48,7 @@ namespace Thermometer.Infrastructure
                 var response = await httpResponse.Content.ReadAsStringAsync();
                 var decodedRespose = DecodeResponse(response);
                 var deserializedObject = JsonConvert.DeserializeObject<Rp5WeatherForecastRootObject>(decodedRespose);
-                return ModelExtensions.ConvertToWeatherForecastProjections(deserializedObject);
+                return Rp5Extensions.ConvertToWeatherForecastProjections(deserializedObject);
             }
         }
 

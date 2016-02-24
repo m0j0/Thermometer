@@ -3,6 +3,7 @@ using MugenMvvmToolkit.Binding;
 using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.Models.IoC;
 using MugenMvvmToolkit.Modules;
+using Thermometer.Extensions;
 using Thermometer.Infrastructure;
 using Thermometer.Interfaces;
 

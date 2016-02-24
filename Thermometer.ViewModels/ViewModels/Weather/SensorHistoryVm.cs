@@ -4,6 +4,7 @@ using MugenMvvmToolkit.Collections;
 using MugenMvvmToolkit.Interfaces.Collections;
 using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.ViewModels;
+using Thermometer.Extensions;
 using Thermometer.Infrastructure;
 using Thermometer.Interfaces;
 using Thermometer.Projections;

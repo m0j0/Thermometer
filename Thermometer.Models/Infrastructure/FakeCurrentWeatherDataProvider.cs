@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MugenMvvmToolkit;
 using Newtonsoft.Json;
+using Thermometer.Extensions;
 using Thermometer.Interfaces;
 using Thermometer.JsonModels;
 using Thermometer.Projections;
@@ -16,7 +17,7 @@ namespace Thermometer.Infrastructure
         public Task<IList<DeviceProjection>> GetDevicesAsync()
         {
             var response = JsonConvert.DeserializeObject<SensorsNearbyResponse>(GetDevicesResponse);
-            return Task.FromResult<IList<DeviceProjection>>(ModelExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response));
+            return Task.FromResult<IList<DeviceProjection>>(NarodMonExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response));
         }
 
         public Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)

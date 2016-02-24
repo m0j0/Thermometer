@@ -29,6 +29,16 @@ namespace Thermometer.Infrastructure
 
         #region Implementation
 
+        #region TODO
+
+        public TemperatureMeasureUnit TemperatureMeasureUnit => TemperatureMeasureUnit.Celsius;
+        public PressureMeasureUnit PressureMeasureUnit => PressureMeasureUnit.Mmhg;
+        public WindMeasureUnit WindMeasureUnit => WindMeasureUnit.Ms;
+        public CloudinessMeasureUnit CloudinessMeasureUnit => CloudinessMeasureUnit.Percents;
+        public PrecipitationMeasureUnit PrecipitationMeasureUnit => PrecipitationMeasureUnit.Mm;
+
+        #endregion
+
         public bool LocationConsent => _settings.LocationConsent;
 
         public int DeviceRadius => _settings.DeviceRadius;
