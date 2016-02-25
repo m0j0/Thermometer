@@ -36,9 +36,15 @@
                 <chart:LinearAxis/>
             </chart:RadCartesianChart.VerticalAxis>
             <chart:RadCartesianChart.HorizontalAxis>
-                <chart:CategoricalAxis/>
+                <chart:CategoricalAxis />
             </chart:RadCartesianChart.HorizontalAxis>
-
+            
+            <chart:RadCartesianChart.Behaviors>
+                <chart:ChartPanAndZoomBehavior
+                    ZoomMode="Horizontal" PanMode="Horizontal"
+                    HandleDoubleTap="True"/>
+            </chart:RadCartesianChart.Behaviors>
+            
             <chart:LineSeries ItemsSource="{Binding Items}">
                 <chart:LineSeries.CategoryBinding>
                     <chart:PropertyNameDataPointBinding  PropertyName="Time"/>

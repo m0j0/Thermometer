@@ -63,10 +63,12 @@
                         <StackPanel Grid.Column="2"
                                     Grid.Row="0" Grid.RowSpan="5">
                             <Image
-                                Source="{Binding Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}" />
+                                Source="{Binding Converter={StaticResource Rp5ForecastCloudCoverIconConverter}}" 
+                                Margin="0 0 0 -15"/>
 
                             <Image
-                                Source="{Binding Converter={StaticResource Rp5PrecipitationIconConverter}}" />
+                                Source="{Binding Converter={StaticResource Rp5PrecipitationIconConverter}}"
+                                Margin="0 -15 0 0"/>
                         </StackPanel>
                       
                         <!--<Image 
