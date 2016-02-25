@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using MugenMvvmToolkit.Collections;
 using MugenMvvmToolkit.Interfaces.Collections;
 using MugenMvvmToolkit.Interfaces.Models;
@@ -44,20 +45,28 @@ namespace Thermometer.ViewModels.Weather
         public INotifiableCollection<SensorHistoryData> Items { get; }
 
         public string DisplayName { get; set; } = "График";
-
-        public SensorProjection Sensor { get; private set; }
-
+        
         public int IdSensor { get; private set; }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand RefreshCommand { get; }
 
         #endregion
 
         #region Methods
 
-        protected override void OnInitializing(IDataContext context)
+        protected override async void OnInitializing(IDataContext context)
         {
             base.OnInitializing(context);
 
             IdSensor = context.GetData(Constants.IdSensor);
+
+            var items =  await _currentWeatherDataProvider.UpdateSensorHistoryAsync(IdSensor, SelectedPeriodType, DateTime.Now).WithBusyIndicator(this);
+            Items.Clear();
+            Items.AddRange(items);
         }
 
         protected override void OnInitialized()
@@ -65,19 +74,6 @@ namespace Thermometer.ViewModels.Weather
             base.OnInitialized();
 
             SelectedPeriodType = SensorHistoryPeriod.Day;
-        }
-
-        private async void Initialize(SensorProjection projection)
-        {
-            Sensor = projection;
-            await _currentWeatherDataProvider.UpdateSensorHistoryAsync(Sensor, SelectedPeriodType, DateTime.Now).WithBusyIndicator(this);
-            Items.Clear();
-            Items.AddRange(projection.Data);
-        }
-
-        private void Initialize(int idSensor)
-        {
-            IdSensor = idSensor;
         }
 
         #endregion

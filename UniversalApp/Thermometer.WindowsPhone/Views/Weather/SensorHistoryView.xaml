@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0"
-                   Text="Период показаний:" />
+                   Text="Номер датчика:" />
         <TextBlock Grid.Row="0" Grid.Column="1"
                    Text="{Binding IdSensor}" />
         <!--<ComboBox Grid.Row="0" Grid.Column="1"
@@ -32,29 +32,37 @@
                   SelectedValue="{Binding SelectedPeriodType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectedValuePath="Item1" DisplayMemberPath="Item2" />-->
 
-        <chart:RadCartesianChart 
+        <chart:RadCartesianChart
             Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
             <chart:RadCartesianChart.VerticalAxis>
-                <chart:LinearAxis/>
+                <chart:LinearAxis />
             </chart:RadCartesianChart.VerticalAxis>
             <chart:RadCartesianChart.HorizontalAxis>
                 <chart:CategoricalAxis />
             </chart:RadCartesianChart.HorizontalAxis>
-            
+
             <chart:RadCartesianChart.Behaviors>
                 <chart:ChartPanAndZoomBehavior
                     ZoomMode="Horizontal" PanMode="Horizontal"
-                    HandleDoubleTap="True"/>
+                    HandleDoubleTap="True" />
             </chart:RadCartesianChart.Behaviors>
-            
+
             <chart:LineSeries ItemsSource="{Binding Items}">
                 <chart:LineSeries.CategoryBinding>
-                    <chart:PropertyNameDataPointBinding  PropertyName="Time"/>
+                    <chart:PropertyNameDataPointBinding PropertyName="Time" />
                 </chart:LineSeries.CategoryBinding>
                 <chart:LineSeries.ValueBinding>
-                    <chart:PropertyNameDataPointBinding PropertyName="Value"/>
+                    <chart:PropertyNameDataPointBinding PropertyName="Value" />
                 </chart:LineSeries.ValueBinding>
             </chart:LineSeries>
         </chart:RadCartesianChart>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Refresh" Label="обновить" Command="{Binding Path=RefreshCommand}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

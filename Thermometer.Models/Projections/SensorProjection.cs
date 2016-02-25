@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using MugenMvvmToolkit.Models;
 
 namespace Thermometer.Projections
 {
     public class SensorProjection : NotifyPropertyChangedBase
     {
-        #region Constructors
-
-        public SensorProjection()
-        {
-            Data = new List<SensorHistoryData>();
-        }
-
-        #endregion
-
         #region Properties
 
         public int Id { get; set; }
@@ -30,8 +20,6 @@ namespace Thermometer.Projections
         public DateTime Time { get; set; }
 
         public bool IsPinned { get; set; }
-
-        public IList<SensorHistoryData> Data { get; }
 
         #endregion
     }

@@ -57,20 +57,23 @@ namespace Thermometer.Infrastructure
             return NarodMonExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response);
         }
 
-        public async Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)
+        public async Task<IList<SensorHistoryData>> UpdateSensorHistoryAsync(int idSensor, SensorHistoryPeriod period, DateTime offset)
         {
-            var request = new SensorLogRequest {Cmd = "sensorLog", Id = sensor.Id, Period = "day", Offset = 1, Uuid = Uuid, ApiKey = ApiKey};
+            var request = new SensorLogRequest {Cmd = "sensorLog", Id =idSensor, Period = "day", Offset = 1, Uuid = Uuid, ApiKey = ApiKey};
 
             var response = await Send<SensorLogResponse>(request);
+            
+            var result = new List<SensorHistoryData>();
             if (response?.Data == null)
             {
-                return;
+                return result;
             }
 
             foreach (var responseData in response.Data)
             {
-                sensor.Data.Add(new SensorHistoryData(ModelExtensions.UnixTimeStampToDateTime(responseData.Time, true), responseData.Value));
+                result.Add(new SensorHistoryData(ModelExtensions.UnixTimeStampToDateTime(responseData.Time, true), responseData.Value));
             }
+            return result;
         }
 
         #endregion

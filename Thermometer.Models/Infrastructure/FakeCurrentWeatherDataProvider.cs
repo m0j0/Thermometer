@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MugenMvvmToolkit;
@@ -30,7 +31,7 @@ namespace Thermometer.Infrastructure
             return Task.FromResult<IList<DeviceProjection>>(NarodMonExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response));
         }
 
-        public Task UpdateSensorHistoryAsync(SensorProjection sensor, SensorHistoryPeriod period, DateTime offset)
+        public Task<IList<SensorHistoryData>> UpdateSensorHistoryAsync(int idSensor, SensorHistoryPeriod period, DateTime offset)
         {
             //var response = JsonConvert.DeserializeObject<SensorLogResponse>(SensorHistoryResonse);
             //foreach (var responseData in response.Data)
@@ -38,12 +39,13 @@ namespace Thermometer.Infrastructure
             //    sensor.Data.Add(new SensorHistoryData(ModelExtensions.UnixTimeStampToDateTime(responseData.Time, true), responseData.Value));
             //}
 
+            var result = new List<SensorHistoryData>();
             var random = new Random();
             for (var i = 0; i < 100; i++)
             {
-                sensor.Data.Add(new SensorHistoryData(DateTime.Now - TimeSpan.FromHours(i), (random.NextDouble() - 0.5) * 50));
+                result.Add(new SensorHistoryData(DateTime.Now - TimeSpan.FromHours(i), (random.NextDouble() - 0.5) * 50));
             }
-            return Empty.Task;
+            return Task.FromResult<IList<SensorHistoryData>>(result);
         }
 
         #endregion
