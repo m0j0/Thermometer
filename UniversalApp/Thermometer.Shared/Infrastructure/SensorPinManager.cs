@@ -28,7 +28,7 @@ namespace Thermometer.Infrastructure
 
             // During creation of secondary tile, an application may set additional arguments on the tile that will be passed in during activation.
             // These arguments should be meaningful to the application. In this sample, we'll pass in the date and time the secondary tile was pinned.
-            string tileActivationArguments = $"idsensor={idSensor}";
+            string tileActivationArguments = $"idSensor={idSensor}";
 
             // Create a Secondary tile with all the required arguments.
             // Note the last argument specifies what size the Secondary tile should show up as by default in the Pin to start fly out.

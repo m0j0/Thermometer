@@ -39,6 +39,7 @@
     <Compile Include="Extensions\ModelExtensions.cs" />
     <Compile Include="Extensions\NarodMonExtensions.cs" />
     <Compile Include="Extensions\Rp5Extensions.cs" />
+    <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\Enums.cs" />
     <Compile Include="Infrastructure\FakeCurrentWeatherDataProvider.cs" />
     <Compile Include="Infrastructure\FakeWeatherForecastDataProvider.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Interfaces\IApplicationSettings.cs" />
     <Compile Include="Interfaces\ICurrentLocationDataProvider.cs" />
     <Compile Include="Interfaces\ICurrentWeatherDataProvider.cs" />
+    <Compile Include="Interfaces\ICurrentWeatherManager.cs" />
     <Compile Include="Interfaces\IDisplayWrapperVm.cs" />
     <Compile Include="Interfaces\IEditorWrapperVm.cs" />
     <Compile Include="Interfaces\IMd5AlgorithmProvider.cs" />

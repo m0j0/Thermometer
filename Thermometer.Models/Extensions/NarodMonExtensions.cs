@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Thermometer.JsonModels;
 using Thermometer.Projections;
@@ -32,7 +33,10 @@ namespace Thermometer.Extensions
                                     Name = sensor.Name,
                                     Value = sensor.Value,
                                     Unit = sensor.Unit,
-                                    Time = ModelExtensions.UnixTimeStampToDateTime(sensor.Time, true)
+                                    Time = ModelExtensions.UnixTimeStampToDateTime(sensor.Time, true),
+#if DEBUG
+                                    IsPinned = new Random().Next() % 2 == 1
+#endif
                                 }).ToList()
                 };
                 result.Add(projection);

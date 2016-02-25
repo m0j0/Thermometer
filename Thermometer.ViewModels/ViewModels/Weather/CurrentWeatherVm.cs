@@ -4,6 +4,7 @@ using MugenMvvmToolkit;
 using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
+using Thermometer.Infrastructure;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
 
@@ -15,15 +16,17 @@ namespace Thermometer.ViewModels.Weather
 
         private readonly ICurrentWeatherDataProvider _currentWeatherDataProvider;
         private readonly ISensorPinManager _sensorPinManager;
+        private readonly ICurrentWeatherManager _currentWeatherManager;
 
         #endregion
 
         #region Constructors
 
-        public CurrentWeatherVm(ICurrentWeatherDataProvider currentWeatherDataProvider, ISensorPinManager sensorPinManager)
+        public CurrentWeatherVm(ICurrentWeatherDataProvider currentWeatherDataProvider, ISensorPinManager sensorPinManager, ICurrentWeatherManager currentWeatherManager)
         {
             _currentWeatherDataProvider = currentWeatherDataProvider;
             _sensorPinManager = sensorPinManager;
+            _currentWeatherManager = currentWeatherManager;
 
             ShowSensorCommand = new RelayCommand<SensorProjection>(ShowSensor, CanShowSensor, this);
             ChangeSensorPinStatusCommand = new RelayCommand<SensorProjection>(ChangeSensorPinStatus, CanChangeSensorPinStatus, this);
@@ -35,14 +38,9 @@ namespace Thermometer.ViewModels.Weather
 
         public ICommand ShowSensorCommand { get; }
 
-        private async void ShowSensor(SensorProjection projection)
+        private void ShowSensor(SensorProjection projection)
         {
-            using (var vm = GetViewModel<SensorHistoryVm>())
-            using (var wrapper = vm.Wrap<IDisplayWrapperVm>())
-            {
-                vm.Initialize(projection);
-                await wrapper.ShowAsync();
-            }
+            _currentWeatherManager.ShowSensorHistoryAsync(projection.Id, this);
         }
 
         private bool CanShowSensor(SensorProjection projection)

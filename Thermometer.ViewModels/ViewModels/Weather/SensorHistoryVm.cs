@@ -47,9 +47,18 @@ namespace Thermometer.ViewModels.Weather
 
         public SensorProjection Sensor { get; private set; }
 
+        public int IdSensor { get; private set; }
+
         #endregion
 
         #region Methods
+
+        protected override void OnInitializing(IDataContext context)
+        {
+            base.OnInitializing(context);
+
+            IdSensor = context.GetData(Constants.IdSensor);
+        }
 
         protected override void OnInitialized()
         {
@@ -58,12 +67,17 @@ namespace Thermometer.ViewModels.Weather
             SelectedPeriodType = SensorHistoryPeriod.Day;
         }
 
-        public async void Initialize(SensorProjection projection)
+        private async void Initialize(SensorProjection projection)
         {
             Sensor = projection;
             await _currentWeatherDataProvider.UpdateSensorHistoryAsync(Sensor, SelectedPeriodType, DateTime.Now).WithBusyIndicator(this);
             Items.Clear();
             Items.AddRange(projection.Data);
+        }
+
+        private void Initialize(int idSensor)
+        {
+            IdSensor = idSensor;
         }
 
         #endregion

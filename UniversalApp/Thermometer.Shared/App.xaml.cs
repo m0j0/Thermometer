@@ -1,11 +1,19 @@
-﻿using Windows.ApplicationModel;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using MugenMvvmToolkit;
+using MugenMvvmToolkit.DataConstants;
+using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.WinRT.Infrastructure;
+using Thermometer.Infrastructure;
+using Thermometer.Interfaces;
+using Thermometer.ViewModels.Weather;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -44,6 +52,7 @@ namespace Thermometer
 //                this.DebugSettings.EnableFrameRateCounter = true;
 //            }
 //#endif
+            int? idSensor = GetIdSensorFromArguments(e.Arguments);
 
             Frame rootFrame = Window.Current.Content as Frame;
             WinRTBootstrapperBase bootstrapper = null;
@@ -54,7 +63,17 @@ namespace Thermometer
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-                bootstrapper = new Bootstrapper<ThermometerApp>(rootFrame, new AutofacContainer());
+                var autofacContainer = new AutofacContainer();
+
+                if (idSensor == null)
+                {
+                    bootstrapper = new Bootstrapper<ThermometerApp>(rootFrame, autofacContainer);
+                }
+                else
+                {
+                    bootstrapper = new Bootstrapper<SensorHistoryVm>(rootFrame, autofacContainer);
+                    bootstrapper.InitializationContext = new DataContext(DataConstantValue.Create(Constants.IdSensor, idSensor.Value));
+                }
                 await bootstrapper.InitializeAsync();
 
                 //Associate the frame with a SuspensionManager key                                
@@ -106,6 +125,32 @@ namespace Thermometer
 
             // Ensure the current window is active
             Window.Current.Activate();
+
+            if (bootstrapper == null && idSensor != null)
+            {
+                await ServiceProvider.Get<ICurrentWeatherManager>().ShowSensorHistoryAsync(idSensor.Value, null);
+            }
+        }
+
+        private int? GetIdSensorFromArguments(string arguments)
+        {
+            if (string.IsNullOrEmpty(arguments))
+            {
+                return null;
+            }
+
+            var match = Regex.Match(arguments, @"idSensor=([\d]+)");
+            if (!match.Success && match.Groups.Count == 2)
+            {
+                return null;
+            }
+
+            int result;
+            if (int.TryParse(match.Groups[1].Value, out result))
+            {
+                return result;
+            }
+            return null;
         }
 
 #if WINDOWS_PHONE_APP

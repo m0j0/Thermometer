@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<Page
     x:Class="Thermometer.Views.Weather.SensorHistoryView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -25,10 +25,12 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0"
                    Text="Период показаний:" />
-        <ComboBox Grid.Row="0" Grid.Column="1"
+        <TextBlock Grid.Row="0" Grid.Column="1"
+                   Text="{Binding IdSensor}" />
+        <!--<ComboBox Grid.Row="0" Grid.Column="1"
                   ItemsSource="{Binding PeriodTypes}"
                   SelectedValue="{Binding SelectedPeriodType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedValuePath="Item1" DisplayMemberPath="Item2" />
+                  SelectedValuePath="Item1" DisplayMemberPath="Item2" />-->
 
         <chart:RadCartesianChart 
             Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
@@ -55,4 +57,4 @@
             </chart:LineSeries>
         </chart:RadCartesianChart>
     </Grid>
-</UserControl>
+</Page>
