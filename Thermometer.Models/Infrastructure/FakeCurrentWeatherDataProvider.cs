@@ -41,7 +41,7 @@ namespace Thermometer.Infrastructure
 
             var result = new List<SensorHistoryData>();
             var random = new Random();
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < 24; i++)
             {
                 result.Add(new SensorHistoryData(DateTime.Now - TimeSpan.FromHours(i), (random.NextDouble() - 0.5) * 50));
             }

@@ -8,6 +8,7 @@
     xmlns:viewModels="using:Thermometer.ViewModels"
     xmlns:weather="using:Thermometer.ViewModels.Weather"
     xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+    xmlns:infrastructure="using:Thermometer.Infrastructure"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance weather:SensorHistoryVm}"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -31,6 +32,28 @@
                   ItemsSource="{Binding PeriodTypes}"
                   SelectedValue="{Binding SelectedPeriodType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectedValuePath="Item1" DisplayMemberPath="Item2" />-->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.Resources>
+                <infrastructure:SensorHistoryPeriod x:Key="Day">Day</infrastructure:SensorHistoryPeriod>
+                <infrastructure:SensorHistoryPeriod x:Key="Week">Week</infrastructure:SensorHistoryPeriod>
+                <infrastructure:SensorHistoryPeriod x:Key="Month">Month</infrastructure:SensorHistoryPeriod>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ToggleButton Grid.Column="0" HorizontalAlignment="Stretch"
+                          IsChecked="{Binding Path=PeriodType, Mode=TwoWay, Converter={StaticResource SensorHistoryPeriodTypeConverter}, ConverterParameter={StaticResource Day}}"
+                          Content="сутки" />
+            <ToggleButton Grid.Column="1" HorizontalAlignment="Stretch"
+                          IsChecked="{Binding Path=PeriodType, Mode=TwoWay, Converter={StaticResource SensorHistoryPeriodTypeConverter}, ConverterParameter={StaticResource Week}}"
+                          Content="неделя" />
+            <ToggleButton Grid.Column="2" HorizontalAlignment="Stretch"
+                          IsChecked="{Binding Path=PeriodType, Mode=TwoWay, Converter={StaticResource SensorHistoryPeriodTypeConverter}, ConverterParameter={StaticResource Month}}"
+                          Content="месяц" />
+        </Grid>
 
         <chart:RadCartesianChart
             Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
@@ -38,13 +61,24 @@
                 <chart:LinearAxis />
             </chart:RadCartesianChart.VerticalAxis>
             <chart:RadCartesianChart.HorizontalAxis>
-                <chart:CategoricalAxis />
+                <chart:DateTimeCategoricalAxis Height="100">
+                    <chart:DateTimeCategoricalAxis.LabelTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource DateTimeToShortTimeConverter}}">
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform Angle="300" />
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </DataTemplate>
+                    </chart:DateTimeCategoricalAxis.LabelTemplate>
+                </chart:DateTimeCategoricalAxis>
             </chart:RadCartesianChart.HorizontalAxis>
 
             <chart:RadCartesianChart.Behaviors>
                 <chart:ChartPanAndZoomBehavior
                     ZoomMode="Horizontal" PanMode="Horizontal"
-                    HandleDoubleTap="True" />
+                    HandleDoubleTap="True"  />
+                <chart:ChartTrackBallBehavior  />
             </chart:RadCartesianChart.Behaviors>
 
             <chart:LineSeries ItemsSource="{Binding Items}">
@@ -65,4 +99,4 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
-</Page>
+</Page> 

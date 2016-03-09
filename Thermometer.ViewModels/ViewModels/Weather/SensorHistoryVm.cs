@@ -1,36 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
+using MugenMvvmToolkit;
 using MugenMvvmToolkit.Collections;
 using MugenMvvmToolkit.Interfaces.Collections;
 using MugenMvvmToolkit.Interfaces.Models;
+using MugenMvvmToolkit.Interfaces.Presenters;
+using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
-using Thermometer.Extensions;
 using Thermometer.Infrastructure;
 using Thermometer.Interfaces;
 using Thermometer.Projections;
 
 namespace Thermometer.ViewModels.Weather
 {
-    public class SensorHistoryVm : CloseableViewModel, IHasDisplayName
+    public class SensorHistoryVm : CloseableViewModel
     {
         #region Fields
 
         private readonly ICurrentWeatherDataProvider _currentWeatherDataProvider;
+        private readonly IToastPresenter _toastPresenter;
+        private SensorHistoryPeriod _periodType = SensorHistoryPeriod.Day;
+        private int _idSensor;
 
         #endregion
 
         #region Constructors
 
-        public SensorHistoryVm(ICurrentWeatherDataProvider currentWeatherDataProvider)
+        public SensorHistoryVm(ICurrentWeatherDataProvider currentWeatherDataProvider, IToastPresenter toastPresenter)
         {
             _currentWeatherDataProvider = currentWeatherDataProvider;
-            PeriodTypes = new[]
-            {
-                Tuple.Create(SensorHistoryPeriod.Day, SensorHistoryPeriod.Day.ToText()), Tuple.Create(SensorHistoryPeriod.Week, SensorHistoryPeriod.Week.ToText()),
-                Tuple.Create(SensorHistoryPeriod.Month, SensorHistoryPeriod.Month.ToText())
-            };
+            _toastPresenter = toastPresenter;
 
+            RefreshCommand = new RelayCommand(Refresh);
             Items = new SynchronizedNotifiableCollection<SensorHistoryData>();
         }
 
@@ -38,15 +39,27 @@ namespace Thermometer.ViewModels.Weather
 
         #region Properties
 
-        public IList<Tuple<SensorHistoryPeriod, string>> PeriodTypes { get; }
-
-        public SensorHistoryPeriod SelectedPeriodType { get; set; }
-
         public INotifiableCollection<SensorHistoryData> Items { get; }
 
-        public string DisplayName { get; set; } = "График";
-        
-        public int IdSensor { get; private set; }
+        public SensorHistoryPeriod PeriodType
+        {
+            get { return _periodType; }
+            set
+            {
+                _periodType = value;
+                Refresh();
+            }
+        }
+
+        public int IdSensor
+        {
+            get { return _idSensor; }
+            private set
+            {
+                _idSensor = value;
+                Refresh();
+            }
+        }
 
         #endregion
 
@@ -54,26 +67,23 @@ namespace Thermometer.ViewModels.Weather
 
         public ICommand RefreshCommand { get; }
 
+        private async void Refresh()
+        {
+            var items = await _currentWeatherDataProvider.UpdateSensorHistoryAsync(IdSensor, PeriodType, DateTime.Now).WithBusyIndicator(this);
+            Items.Clear();
+            Items.AddRange(items);
+            _toastPresenter.ShowAsync("Добавлено записей: " + items.Count, ToastDuration.Short);
+        }
+
         #endregion
 
         #region Methods
 
-        protected override async void OnInitializing(IDataContext context)
+        protected override void OnInitializing(IDataContext context)
         {
             base.OnInitializing(context);
 
             IdSensor = context.GetData(Constants.IdSensor);
-
-            var items =  await _currentWeatherDataProvider.UpdateSensorHistoryAsync(IdSensor, SelectedPeriodType, DateTime.Now).WithBusyIndicator(this);
-            Items.Clear();
-            Items.AddRange(items);
-        }
-
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-
-            SelectedPeriodType = SensorHistoryPeriod.Day;
         }
 
         #endregion

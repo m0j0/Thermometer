@@ -10,8 +10,10 @@
     <converters:Rp5PrecipitationIconConverter x:Key="Rp5PrecipitationIconConverter"/>
     <converters:CloudinessTextConverter x:Key="CloudinessTextConverter"/>
     <converters:DateTimeToShortTimeConverter x:Key="DateTimeToShortTimeConverter"/>
+    <converters:DateTimeToShortDateConverter x:Key="DateTimeToShortDateConverter"/>
     <converters:PrecipitationTextConverter x:Key="PrecipitationTextConverter"/>
     <converters:PressureTextConverter x:Key="PressureTextConverter"/>
     <converters:TemperatureTextConverter x:Key="TemperatureTextConverter"/>
     <converters:WindTextConverter x:Key="WindTextConverter"/>
+    <converters:SensorHistoryPeriodTypeConverter x:Key="SensorHistoryPeriodTypeConverter"/>
 </ResourceDictionary>
