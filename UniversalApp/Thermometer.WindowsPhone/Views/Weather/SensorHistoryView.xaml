@@ -9,9 +9,16 @@
     xmlns:weather="using:Thermometer.ViewModels.Weather"
     xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
     xmlns:infrastructure="using:Thermometer.Infrastructure"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Thermometer.Behaviors"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance weather:SensorHistoryVm}"
     d:DesignHeight="300"
     d:DesignWidth="400">
+
+    <interactivity:Interaction.Behaviors>
+        <behaviors:ProgressBehavior IsVisible="{Binding Path=IsBusy}"
+                                    Text="{Binding Path=BusyMessage}" />
+    </interactivity:Interaction.Behaviors>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,13 +32,10 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0"
-                   Text="Номер датчика:" />
+                   Text="Номер датчика" />
         <TextBlock Grid.Row="0" Grid.Column="1"
                    Text="{Binding IdSensor}" />
-        <!--<ComboBox Grid.Row="0" Grid.Column="1"
-                  ItemsSource="{Binding PeriodTypes}"
-                  SelectedValue="{Binding SelectedPeriodType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedValuePath="Item1" DisplayMemberPath="Item2" />-->
+
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.Resources>
                 <infrastructure:SensorHistoryPeriod x:Key="Day">Day</infrastructure:SensorHistoryPeriod>
@@ -42,43 +46,45 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ToggleButton Grid.Column="0" HorizontalAlignment="Stretch"
+            <Button Grid.Column="0"
+                    Command="{Binding LoadMoreItemsCommand}">
+                <SymbolIcon Symbol="Back" />
+            </Button>
+
+            <ToggleButton Grid.Column="1" HorizontalAlignment="Stretch"
                           IsChecked="{Binding Path=PeriodType, Mode=TwoWay, Converter={StaticResource SensorHistoryPeriodTypeConverter}, ConverterParameter={StaticResource Day}}"
                           Content="сутки" />
-            <ToggleButton Grid.Column="1" HorizontalAlignment="Stretch"
+            <ToggleButton Grid.Column="2" HorizontalAlignment="Stretch"
                           IsChecked="{Binding Path=PeriodType, Mode=TwoWay, Converter={StaticResource SensorHistoryPeriodTypeConverter}, ConverterParameter={StaticResource Week}}"
                           Content="неделя" />
-            <ToggleButton Grid.Column="2" HorizontalAlignment="Stretch"
+            <ToggleButton Grid.Column="3" HorizontalAlignment="Stretch"
                           IsChecked="{Binding Path=PeriodType, Mode=TwoWay, Converter={StaticResource SensorHistoryPeriodTypeConverter}, ConverterParameter={StaticResource Month}}"
                           Content="месяц" />
         </Grid>
 
-        <chart:RadCartesianChart
-            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+        <chart:RadCartesianChart Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
             <chart:RadCartesianChart.VerticalAxis>
                 <chart:LinearAxis />
             </chart:RadCartesianChart.VerticalAxis>
             <chart:RadCartesianChart.HorizontalAxis>
-                <chart:DateTimeCategoricalAxis Height="100">
-                    <chart:DateTimeCategoricalAxis.LabelTemplate>
+                <chart:DateTimeContinuousAxis LabelFitMode="Rotate" LabelRotationAngle="300"
+                                              PlotMode="OnTicks">
+                    <chart:DateTimeContinuousAxis.LabelTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource DateTimeToShortTimeConverter}}">
-                                <TextBlock.RenderTransform>
-                                    <RotateTransform Angle="300" />
-                                </TextBlock.RenderTransform>
-                            </TextBlock>
+                            <TextBlock Text="{Binding Converter={StaticResource DateTimeToShortDateTimeConverter}}" />
                         </DataTemplate>
-                    </chart:DateTimeCategoricalAxis.LabelTemplate>
-                </chart:DateTimeCategoricalAxis>
+                    </chart:DateTimeContinuousAxis.LabelTemplate>
+                </chart:DateTimeContinuousAxis>
             </chart:RadCartesianChart.HorizontalAxis>
 
             <chart:RadCartesianChart.Behaviors>
                 <chart:ChartPanAndZoomBehavior
                     ZoomMode="Horizontal" PanMode="Horizontal"
-                    HandleDoubleTap="True"  />
-                <chart:ChartTrackBallBehavior  />
+                    HandleDoubleTap="True" />
+                <chart:ChartTrackBallBehavior />
             </chart:RadCartesianChart.Behaviors>
 
             <chart:LineSeries ItemsSource="{Binding Items}">
@@ -88,6 +94,32 @@
                 <chart:LineSeries.ValueBinding>
                     <chart:PropertyNameDataPointBinding PropertyName="Value" />
                 </chart:LineSeries.ValueBinding>
+
+                <chart:ChartTrackBallBehavior.TrackInfoTemplate>
+                    <DataTemplate>
+                        <Border Background="White" BorderBrush="Green"
+                                BorderThickness="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Время:" Foreground="DarkSalmon" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DataPoint.DataItem.Time}"
+                                           Foreground="DarkSalmon" />
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Значение: " Foreground="DarkSalmon" />
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DataPoint.DataItem.Value}"
+                                           Foreground="DarkSalmon" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </chart:ChartTrackBallBehavior.TrackInfoTemplate>
             </chart:LineSeries>
         </chart:RadCartesianChart>
     </Grid>
@@ -99,4 +131,4 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
-</Page> 
+</Page>

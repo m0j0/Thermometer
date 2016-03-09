@@ -43,5 +43,15 @@ namespace Thermometer.Projections
         public double Value { get; set; }
 
         #endregion
+
+        #region Methods
+
+        public override string ToString()
+        {
+            return $"{Time} - {Value}";
+        }
+
+        #endregion
+
     }
 }

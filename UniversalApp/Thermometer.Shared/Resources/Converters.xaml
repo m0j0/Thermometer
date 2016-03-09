@@ -11,9 +11,12 @@
     <converters:CloudinessTextConverter x:Key="CloudinessTextConverter"/>
     <converters:DateTimeToShortTimeConverter x:Key="DateTimeToShortTimeConverter"/>
     <converters:DateTimeToShortDateConverter x:Key="DateTimeToShortDateConverter"/>
+    <converters:DateTimeToShortDateTimeConverter x:Key="DateTimeToShortDateTimeConverter"/>
     <converters:PrecipitationTextConverter x:Key="PrecipitationTextConverter"/>
     <converters:PressureTextConverter x:Key="PressureTextConverter"/>
     <converters:TemperatureTextConverter x:Key="TemperatureTextConverter"/>
     <converters:WindTextConverter x:Key="WindTextConverter"/>
     <converters:SensorHistoryPeriodTypeConverter x:Key="SensorHistoryPeriodTypeConverter"/>
+    <converters:SizeConverter x:Key="SizeConverter"/>
+    <converters:PointConverter x:Key="PointConverter"/>
 </ResourceDictionary>

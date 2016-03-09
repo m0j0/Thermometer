@@ -57,9 +57,17 @@ namespace Thermometer.Infrastructure
             return NarodMonExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response);
         }
 
-        public async Task<IList<SensorHistoryData>> UpdateSensorHistoryAsync(int idSensor, SensorHistoryPeriod period, DateTime offset)
+        public async Task<IList<SensorHistoryData>> UpdateSensorHistoryAsync(int idSensor, SensorHistoryPeriod period, int offset)
         {
-            var request = new SensorLogRequest {Cmd = "sensorLog", Id =idSensor, Period = "day", Offset = 1, Uuid = Uuid, ApiKey = ApiKey};
+            var request = new SensorLogRequest
+            {
+                Cmd = "sensorLog",
+                Id = idSensor,
+                Period = period.ToString().ToLower(),
+                Offset = offset,
+                Uuid = Uuid,
+                ApiKey = ApiKey
+            };
 
             var response = await Send<SensorLogResponse>(request);
             

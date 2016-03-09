@@ -31,7 +31,7 @@ namespace Thermometer.Infrastructure
             return Task.FromResult<IList<DeviceProjection>>(NarodMonExtensions.ConvertSensorsNearbyResponseToDeviceProjections(response));
         }
 
-        public Task<IList<SensorHistoryData>> UpdateSensorHistoryAsync(int idSensor, SensorHistoryPeriod period, DateTime offset)
+        public async Task<IList<SensorHistoryData>> UpdateSensorHistoryAsync(int idSensor, SensorHistoryPeriod period, int offset)
         {
             //var response = JsonConvert.DeserializeObject<SensorLogResponse>(SensorHistoryResonse);
             //foreach (var responseData in response.Data)
@@ -41,11 +41,12 @@ namespace Thermometer.Infrastructure
 
             var result = new List<SensorHistoryData>();
             var random = new Random();
-            for (var i = 0; i < 24; i++)
+            for (var i = 0 + 24 * offset; i < (24 + 24 * offset); i++)
             {
                 result.Add(new SensorHistoryData(DateTime.Now - TimeSpan.FromHours(i), (random.NextDouble() - 0.5) * 50));
             }
-            return Task.FromResult<IList<SensorHistoryData>>(result);
+            await Task.Delay(500);
+            return result;
         }
 
         #endregion

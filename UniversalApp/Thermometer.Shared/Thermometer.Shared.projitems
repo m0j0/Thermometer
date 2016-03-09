@@ -17,13 +17,13 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CloudinessTextConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToShortDateConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToShortTimeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PrecipitationTextConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PressureTextConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Rp5ForecastCloudCoverIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Rp5PrecipitationIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Rp5WindDirectionForecastIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SensorHistoryPeriodTypeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SizeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TemperatureTextConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\WindTextConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ApplicationSettings.cs" />

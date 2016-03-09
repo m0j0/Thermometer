@@ -10,6 +10,6 @@ namespace Thermometer.Interfaces
     {
         Task<IList<DeviceProjection>> GetDevicesAsync();
 
-        Task<IList<SensorHistoryData>> UpdateSensorHistoryAsync(int idSensor, SensorHistoryPeriod period, DateTime offset);
+        Task<IList<SensorHistoryData>> UpdateSensorHistoryAsync(int idSensor, SensorHistoryPeriod period, int offset);
     }
 }
